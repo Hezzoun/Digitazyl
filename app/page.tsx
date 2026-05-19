@@ -11,7 +11,7 @@ import { Send, Feather } from "lucide-react"
 const exampleStories = [
   {
     id: 1,
-    text: "Dneska je jeden z tech dnu, kdy mam pocit, ze uz nemuzu. Vsechno je moc.",
+    text: "Dneska je jeden z těch dnů, kdy mám pocit, ze uz nemuzu. Vsechno je moc.",
     category: "vypsat",
     timeAgo: "Pred 45 min",
     hearts: 23,
@@ -42,7 +42,7 @@ const exampleStories = [
   },
   {
     id: 5,
-    text: "Dekuju neznamu cloveku, ktery mi dnes podrzel dvere a usmal se na me. Mala vec, velky dopad.",
+    text: "Děkuju neznámému človeku, který mi dnes podržel dveře a usmál se na me. Malá věc, velký dopad.",
     category: "vdecnost",
     timeAgo: "Pred 4 h",
     hearts: 31,
@@ -95,7 +95,7 @@ export default function Home() {
             </div>
             <div className="flex items-center gap-4">
               <button className="text-sm text-white/80 hover:text-white transition-colors">
-                Prihlasit se
+                Přihlásit se
               </button>
               <button className="flex items-center gap-2 bg-[#2d4a3e] hover:bg-[#243d33] text-white px-5 py-2.5 rounded-full text-sm font-medium transition-colors">
                 Registrovat
@@ -109,10 +109,10 @@ export default function Home() {
         <section className="px-6 pt-12 pb-6 md:pt-16 md:pb-8">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-medium text-white leading-tight tracking-tight text-balance">
-              Tady muzes byt sam sebou.
+              Tady můžeš být sám sebou.
             </h1>
             <p className="mt-4 text-xl md:text-2xl text-white/80 font-light">
-              Co mas v sobe?
+              Co máš v sobě?
             </p>
 
             {/* Decorative line with feather */}
@@ -152,7 +152,7 @@ export default function Home() {
           <div className="max-w-6xl mx-auto">
             <div className="flex items-center justify-center gap-2">
               <h2 className="text-lg text-white/90 font-light">
-                Pribehy lidi jako ty
+                Příběhy lidí jako ty.
               </h2>
               <span className="text-white/60">🤍</span>
             </div>
