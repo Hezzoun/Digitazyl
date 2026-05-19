@@ -11,7 +11,7 @@ import { Send, Feather } from "lucide-react"
 const exampleStories = [
   {
     id: 1,
-    text: "Dneska je jeden z těch dnů, kdy mám pocit, že už nemůžu dál. Všechno je tak těžké.",
+    text: "Dneska je jeden z těch dnů, kdy mám pocit, že už nemůžu dál. Všechno je tak těžké. Co vám pomáhá, když je všechno naprd?",
     category: "vypsat",
     timeAgo: "Pred 45 min",
     hearts: 23,
@@ -77,7 +77,7 @@ export default function Home() {
           className="object-cover"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/10 to-black/40" />
+        <div className="absolute inset-0 bg-linear-to-b from-black/20 via-black/10 to-black/40" />
       </div>
 
       {/* Content */}
@@ -112,7 +112,7 @@ export default function Home() {
               Tady můžeš být sám sebou.
             </h1>
             <p className="mt-4 text-xl md:text-2xl text-white/80 font-light">
-              Co máš v sobě?
+              Tady nemusíš bojovat o pozornost.
             </p>
 
             {/* Decorative line with feather */}
