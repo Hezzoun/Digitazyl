@@ -6,7 +6,7 @@ import { StoryCard } from "@/components/story-card"
 import { CategoryFilters } from "@/components/category-filters"
 import { TrustBadges } from "@/components/trust-badges"
 import Image from "next/image"
-import { Send, Feather, Link } from "lucide-react"
+import { Send, Feather } from "lucide-react"
 import Link from "next/link"
 
 const exampleStories = [
