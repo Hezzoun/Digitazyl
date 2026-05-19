@@ -11,39 +11,39 @@ import { Send, Feather } from "lucide-react"
 const exampleStories = [
   {
     id: 1,
-    text: "Dneska je jeden z těch dnů, kdy mám pocit, ze uz nemuzu. Vsechno je moc.",
-    category: "Vyzpovídat",
+    text: "Dneska je jeden z tech dnu, kdy mam pocit, ze uz nemuzu. Vsechno je moc.",
+    category: "vypsat",
     timeAgo: "Pred 45 min",
     hearts: 23,
   },
   {
     id: 2,
-    text: "Po měsíci prokrastynovaného času, jsem uklidil byt a citím se líp, díky vám všem! :).",
-    category: "Výhry",
+    text: "Po mesici jsem konecne uklidil cely byt. Mozna malickost, ale pro me obrovsky krok.",
+    category: "vyhry",
     timeAgo: "Pred 1 h",
     hearts: 47,
     emoji: "🌿",
   },
   {
     id: 3,
-    text: "Dnes jsem se smála tak, že mě bolelo břicho. Dlouho jsem se takhle fajn necítila.",
-    category: "Radosti",
+    text: "Dnes jsem se smala tak, ze me bolelo bricho. Dlouho jsem se takhle necitila.",
+    category: "radosti",
     timeAgo: "Pred 2 h",
     hearts: 36,
     emoji: "🌟",
   },
   {
     id: 4,
-    text: "Zítra mi čeká pohovor, vůbec nevím co budu říkat, držte mi palce :)",
-    category: "Podpora",
+    text: "Zitra mam dulezitou zkousku a strasne se bojim. Drzte mi palce, prosim.",
+    category: "podpora",
     timeAgo: "Pred 3 h",
     hearts: 19,
     emoji: "🙏",
   },
   {
     id: 5,
-    text: "Děkuju neznámému člověku, který mi dnes podržel dveře a usmál se na me. Malá věc, velký dopad.",
-    category: "Vděčnost",
+    text: "Dekuju neznamu cloveku, ktery mi dnes podrzel dvere a usmal se na me. Mala vec, velky dopad.",
+    category: "vdecnost",
     timeAgo: "Pred 4 h",
     hearts: 31,
     emoji: "💗",
@@ -95,7 +95,7 @@ export default function Home() {
             </div>
             <div className="flex items-center gap-4">
               <button className="text-sm text-white/80 hover:text-white transition-colors">
-                Přihlásit se
+                Prihlasit se
               </button>
               <button className="flex items-center gap-2 bg-[#2d4a3e] hover:bg-[#243d33] text-white px-5 py-2.5 rounded-full text-sm font-medium transition-colors">
                 Registrovat
@@ -112,7 +112,7 @@ export default function Home() {
               Tady můžeš být sám sebou.
             </h1>
             <p className="mt-4 text-xl md:text-2xl text-white/80 font-light">
-              Co máš v sobě?
+              Co más v sobě?
             </p>
 
             {/* Decorative line with feather */}
@@ -152,7 +152,7 @@ export default function Home() {
           <div className="max-w-6xl mx-auto">
             <div className="flex items-center justify-center gap-2">
               <h2 className="text-lg text-white/90 font-light">
-                Příběhy lidí jako ty.
+                Pribehy lidi jako ty
               </h2>
               <span className="text-white/60">🤍</span>
             </div>
