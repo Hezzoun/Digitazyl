@@ -11,7 +11,7 @@ import { Send, Feather } from "lucide-react"
 const exampleStories = [
   {
     id: 1,
-    text: "Dneska je jeden z tech dnu, kdy mam pocit, ze uz nemuzu. Vsechno je moc.",
+    text: "Dneska je jeden z těch dnů, kdy mám pocit, že už nemůžu dál. Všechno je už moc hodně.",
     category: "vypsat",
     timeAgo: "Pred 45 min",
     hearts: 23,
