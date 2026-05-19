@@ -16,6 +16,7 @@ const exampleStories = [
     category: "vypsat",
     timeAgo: "Pred 45 min",
     hearts: 23,
+    emoji: "🤧",
   },
   {
     id: 2,
