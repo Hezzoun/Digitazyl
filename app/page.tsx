@@ -95,7 +95,7 @@ export default function Home() {
             </div>
             <div className="flex items-center gap-4">
               <button className="text-sm text-white/80 hover:text-white transition-colors">
-                Prihlasit se
+                Přihlásit se
               </button>
               <button className="flex items-center gap-2 bg-[#2d4a3e] hover:bg-[#243d33] text-white px-5 py-2.5 rounded-full text-sm font-medium transition-colors">
                 Registrovat
@@ -112,7 +112,7 @@ export default function Home() {
               Tady můžeš být sám sebou.
             </h1>
             <p className="mt-4 text-xl md:text-2xl text-white/80 font-light">
-              Co más v sobě?
+              Co máš v sobě?
             </p>
 
             {/* Decorative line with feather */}
