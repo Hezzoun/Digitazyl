@@ -29,7 +29,7 @@ export function AnonymousInput({
       >
         <div className="text-center">
           <span className="text-2xl mb-2 block">🌱</span>
-          <p className="font-serif text-lg text-amber-100">Děkujeme za sdileni</p>
+          <p className="font-serif text-lg text-amber-100">Děkujeme za sdílení</p>
           <p className="text-sm text-amber-100/60 mt-1">Nejsi v tom sám/sama</p>
         </div>
       </div>
@@ -40,7 +40,7 @@ export function AnonymousInput({
           type="text"
           value={value}
           onChange={(e) => onChange(e.target.value)}
-          placeholder="Co máš v sobě?"
+          placeholder="Jak to dnes jde? Sdílej co tě napadne."
           className={cn(
             "w-full bg-transparent",
             "text-[#2d4a3e] placeholder:text-[#2d4a3e]/50",
@@ -54,7 +54,7 @@ export function AnonymousInput({
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-2 text-[#2d4a3e]/60">
               <Lock className="w-4 h-4" />
-              <span className="text-sm">Anonymni</span>
+              <span className="text-sm">Anonymní</span>
             </div>
             <div className="w-px h-4 bg-[#2d4a3e]/20" />
             <div className="flex items-center gap-2 text-[#2d4a3e]/60">

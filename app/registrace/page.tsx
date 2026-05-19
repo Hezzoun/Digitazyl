@@ -142,7 +142,7 @@ export default function RegistracePage() {
                   type="submit"
                   className="w-full flex items-center justify-center gap-2 bg-[#2d4a3e] hover:bg-[#243d33] text-white py-3.5 rounded-xl font-medium transition-colors mt-6"
                 >
-                  Vytvorit ucet
+                  Vytvořit účet
                   <Feather className="w-4 h-4" />
                 </button>
               </form>
@@ -156,9 +156,9 @@ export default function RegistracePage() {
 
               {/* Login Link */}
               <p className="text-center text-[#5a5549]">
-                Uz mas ucet?{" "}
+                Už máš účet?{" "}
                 <Link href="/přihlášeni" className="text-[#2d4a3e] font-medium hover:underline">
-                  Prihlas se
+                  Přihlaš se
                 </Link>
               </p>
             </div>

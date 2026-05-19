@@ -16,6 +16,7 @@ const exampleStories = [
     category: "vypsat",
     timeAgo: "Pred 45 min",
     hearts: 23,
+    emoji: "🕸️",
   },
   {
     id: 2,
@@ -27,7 +28,7 @@ const exampleStories = [
   },
   {
     id: 3,
-    text: "Dnes jsem se smála tak, že mě bolelo břicho. Dlouho jsem se takhle nezasmála. Stačilo jen vidět jak můj kolega, rozlil v mé přítomnosti kávičku z toho jak je vždy nervozní když jsme spolu. Brzo si s ním vyjdu, když mě on nepozve tak já :)",
+    text: "Dnes jsem se smála tak, že mě bolelo břicho. Dlouho jsem se takhle nezasmála. Stačilo jen vidět jak můj kolega, rozlil v mé přítomnosti kávičku z toho jak je vždy nervozní když jsme spolu. Brzo si s ním vyjdu, když mě on nepozve tak já jeho ano :))",
     category: "radosti",
     timeAgo: "Pred 2 h",
     hearts: 36,
@@ -153,7 +154,7 @@ export default function Home() {
           <div className="max-w-6xl mx-auto">
             <div className="flex items-center justify-center gap-2">
               <h2 className="text-lg text-white/90 font-light">
-                Pribehy lidi jako ty
+                Příběhy skutečných lidí, kteří tě uslyší.
               </h2>
               <span className="text-white/60">🤍</span>
             </div>
