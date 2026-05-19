@@ -69,8 +69,8 @@ export default function Home() {
   }
 
   return (
-    <main className="min-h-screen relative overflow-x-hidden">
-      {/* Background Image */}
+    <main className="min-h-screen bg-cover bg-center"> 
+    style={{backgroundImage: "url('/images/lake-mountains-bg.jpg')",}}
       <div className="fixed inset-0 z-0">
         <Image
           src="/images/lake-mountains-bg.jpg"
