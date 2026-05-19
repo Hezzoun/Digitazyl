@@ -40,7 +40,7 @@ export function AnonymousInput({
           type="text"
           value={value}
           onChange={(e) => onChange(e.target.value)}
-          placeholder="Co máš v sobě?"
+          placeholder="Co máš dnes v sobě? Sdílej co tě napadne."
           className={cn(
             "w-full bg-transparent",
             "text-[#2d4a3e] placeholder:text-[#2d4a3e]/50",
