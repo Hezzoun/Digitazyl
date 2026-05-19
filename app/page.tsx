@@ -7,7 +7,6 @@ import { CategoryFilters } from "@/components/category-filters"
 import { TrustBadges } from "@/components/trust-badges"
 import Image from "next/image"
 import { Send, Feather } from "lucide-react"
-import Link from "next/link"
 
 const exampleStories = [
   {
@@ -98,10 +97,10 @@ export default function Home() {
               <button className="text-sm text-white/80 hover:text-white transition-colors">
                 Přihlásit se
               </button>
-              <Link  href="/registrovat" className="flex items-center gap-2 bg-[#2d4a3e] hover:bg-[#243d33] text-white px-5 py-2.5 rounded-full text-sm font-medium transition-colors">
+              <button className="flex items-center gap-2 bg-[#2d4a3e] hover:bg-[#243d33] text-white px-5 py-2.5 rounded-full text-sm font-medium transition-colors">
                 Registrovat
                 <Feather className="w-4 h-4" />
-               </Link>
+              </button>
             </div>
           </div>
         </header>
