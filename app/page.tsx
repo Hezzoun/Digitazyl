@@ -154,7 +154,7 @@ export default function Home() {
           <div className="max-w-6xl mx-auto">
             <div className="flex items-center justify-center gap-2">
               <h2 className="text-lg text-white/90 font-light">
-                Příběhy lidí jako ty.
+                Příběhy skutečných lidí, kteří tě uslyší.
               </h2>
               <span className="text-white/60">🤍</span>
             </div>
