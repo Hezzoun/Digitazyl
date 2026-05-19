@@ -18,7 +18,7 @@ const exampleStories = [
   },
   {
     id: 2,
-    text: "Po měsíci jsem konečně uklidil celý byt. Možna maličkost, ale pro mě obrovský krok.",
+    text: "Po měsíci jsem konečně uklidil celý byt. Možna maličkost, ale pro mě obrovský krok. Dlouho jsem jen prokrastinoval a jen scrolloval socialní sítě. Jsem rád, že jsem objevil místo, které mě motivuje :)",
     category: "vyhry",
     timeAgo: "Pred 1 h",
     hearts: 47,
@@ -26,7 +26,7 @@ const exampleStories = [
   },
   {
     id: 3,
-    text: "Dnes jsem se smala tak, ze me bolelo bricho. Dlouho jsem se takhle necitila.",
+    text: "Dnes jsem se smála tak, že mě bolelo břicho. Dlouho jsem se takhle nezasmála. Stačilo jen vidět jak můj kolega, rozlil v mé přítomnosti kávičku z toho jak je vždy nervozní když jsme spolu. Brzo si s ním vyjdu, když mě on nepozve tak já :)",
     category: "radosti",
     timeAgo: "Pred 2 h",
     hearts: 36,
