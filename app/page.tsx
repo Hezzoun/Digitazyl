@@ -69,8 +69,8 @@ export default function Home() {
   }
 
   return (
-    <main className="min-h-screen bg-cover bg-center"> 
-    style={{backgroundImage: "url('/images/lake-mountains-bg.jpg')",}}
+    <main className="min-h-screen relative overflow-x-hidden">
+      {/* Background Image */}
       <div className="fixed inset-0 z-0">
         <Image
           src="/images/lake-mountains-bg.jpg"
@@ -154,7 +154,7 @@ export default function Home() {
           <div className="max-w-6xl mx-auto">
             <div className="flex items-center justify-center gap-2">
               <h2 className="text-lg text-white/90 font-light">
-                Příběhy skutečných lidí, kteří tě uslyší.
+                Příběhy skutečných lidí, kteří tě vyslyší.
               </h2>
               <span className="text-white/60">🤍</span>
             </div>
