@@ -72,7 +72,7 @@ export function StoryCard({ story }: StoryCardProps) {
   }
 
   return (
-    <article className="flex-shrink-0 w-[220px] bg-black/40 backdrop-blur-md rounded-2xl p-5 border border-white/10 shadow-xl snap-start hover:bg-black/50 transition-colors">
+    <article className="shrink-0 w-[220px] bg-black/40 backdrop-blur-md rounded-2xl p-5 border border-white/10 shadow-xl snap-start hover:bg-black/50 transition-colors">
       {/* Category tag */}
       <div className={cn(
         "inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium mb-4",
