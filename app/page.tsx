@@ -12,7 +12,7 @@ import { Send, Feather } from "lucide-react"
 const exampleStories = [
   {
     id: 1,
-    text: "Dneska je jeden z těch dnů, kdy mám pocit, že už nemůžu dál. Všechno je tak těžké. Co vám pomáhá, když je všechno naprd?",
+    text: "Dneska je jeden z těch dnů, kdy mám pocit, že už nemůžu dál. Všechno je tak těžké. Co vám pomáhá, když je všechno naprd? SRY VÁNA TYDEN MAX MAM BLOCK UCET XD",
     category: "vypsat",
     timeAgo: "Pred 45 min",
     hearts: 23,
@@ -154,7 +154,7 @@ export default function Home() {
           <div className="max-w-6xl mx-auto">
             <div className="flex items-center justify-center gap-2">
               <h2 className="text-lg text-white/90 font-light">
-                Příběhy skutečných lidí, kteří tě uslyší.
+                Příběhy skutečných lidí, kteří tě vyslyší.
               </h2>
               <span className="text-white/60">🤍</span>
             </div>
