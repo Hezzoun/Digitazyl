@@ -10,8 +10,8 @@ export function TrustBadges() {
               <Lock className="w-5 h-5 text-amber-400" />
             </div>
             <div>
-              <p className="text-sm font-medium text-white/90">Anonymní</p>
-              <p className="text-xs text-white/50">Nikdo neví, kdo jsi.</p>
+              <p className="text-sm font-medium text-white/90">Anonymni</p>
+              <p className="text-xs text-white/50">Nikdo nevi, kdo jsi.</p>
             </div>
           </div>
           
@@ -21,7 +21,7 @@ export function TrustBadges() {
             </div>
             <div>
               <p className="text-sm font-medium text-white/90">Bez soudu</p>
-              <p className="text-xs text-white/50">Tady tě nikdo nehodnotí.</p>
+              <p className="text-xs text-white/50">Tady te nikdo nehodnoti.</p>
             </div>
           </div>
           
@@ -30,8 +30,8 @@ export function TrustBadges() {
               <Heart className="w-5 h-5 text-amber-400" />
             </div>
             <div>
-              <p className="text-sm font-medium text-white/90">Bezpečně</p>
-              <p className="text-xs text-white/50">Tvůj prostor je v bezpečí.</p>
+              <p className="text-sm font-medium text-white/90">Bezpecne</p>
+              <p className="text-xs text-white/50">Tvuj prostor je v bezpeci.</p>
             </div>
           </div>
         </div>

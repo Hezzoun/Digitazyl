@@ -24,13 +24,13 @@ const categoryConfig: Record<string, {
   textColor: string
 }> = {
   vypsat: { 
-    label: "Potřebuji se vypsat", 
+    label: "Potrebuji se vypsat", 
     icon: <Cloud className="w-3.5 h-3.5" />,
     bgColor: "bg-rose-400/20",
     textColor: "text-rose-300"
   },
   vyhry: { 
-    label: "Malé výhry", 
+    label: "Male vyhry", 
     icon: <Sprout className="w-3.5 h-3.5" />,
     bgColor: "bg-emerald-400/20",
     textColor: "text-emerald-300"
@@ -42,13 +42,13 @@ const categoryConfig: Record<string, {
     textColor: "text-amber-300"
   },
   podpora: { 
-    label: "Potřebuji podporu", 
+    label: "Potrebuji podporu", 
     icon: <HeartHandshake className="w-3.5 h-3.5" />,
     bgColor: "bg-pink-400/20",
     textColor: "text-pink-300"
   },
   vdecnost: { 
-    label: "Vděčnost", 
+    label: "Vdecnost", 
     icon: <Heart className="w-3.5 h-3.5" />,
     bgColor: "bg-rose-400/20",
     textColor: "text-rose-300"
@@ -72,7 +72,7 @@ export function StoryCard({ story }: StoryCardProps) {
   }
 
   return (
-    <article className="shrink-0 w-[220px] bg-black/40 backdrop-blur-md rounded-2xl p-5 border border-white/10 shadow-xl snap-start hover:bg-black/50 transition-colors">
+    <article className="flex-shrink-0 w-[220px] bg-black/40 backdrop-blur-md rounded-2xl p-5 border border-white/10 shadow-xl snap-start hover:bg-black/50 transition-colors">
       {/* Category tag */}
       <div className={cn(
         "inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium mb-4",
