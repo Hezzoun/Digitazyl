@@ -90,7 +90,7 @@ export default function RegistracePage() {
                     value={formData.username}
                     onChange={(e) => setFormData({ ...formData, username: e.target.value })}
                     className="w-full px-4 py-3 bg-white/80 border border-[#d4cfc4] rounded-xl text-[#2d4a3e] placeholder-[#8a8578] focus:outline-none focus:ring-2 focus:ring-[#2d4a3e]/30 focus:border-[#2d4a3e] transition-all"
-                    placeholder="Tvoje prezdivka"
+                    placeholder="Tvoje přezdívka"
                     required
                   />
                 </div>
@@ -123,7 +123,7 @@ export default function RegistracePage() {
                       value={formData.password}
                       onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                       className="w-full px-4 py-3 pr-12 bg-white/80 border border-[#d4cfc4] rounded-xl text-[#2d4a3e] placeholder-[#8a8578] focus:outline-none focus:ring-2 focus:ring-[#2d4a3e]/30 focus:border-[#2d4a3e] transition-all"
-                      placeholder="Min. 8 znaku"
+                      placeholder="Min. 8 znaků"
                       required
                       minLength={8}
                     />
@@ -157,7 +157,7 @@ export default function RegistracePage() {
               {/* Login Link */}
               <p className="text-center text-[#5a5549]">
                 Uz mas ucet?{" "}
-                <Link href="/prihlaseni" className="text-[#2d4a3e] font-medium hover:underline">
+                <Link href="/přihlášeni" className="text-[#2d4a3e] font-medium hover:underline">
                   Prihlas se
                 </Link>
               </p>
@@ -165,7 +165,7 @@ export default function RegistracePage() {
 
             {/* Trust Note */}
             <p className="mt-6 text-center text-sm text-white/60">
-              Tvoje data jsou v bezpeci. Nikdo neuvidi tvuj email.
+              Tvoje data jsou v bezpečí. Nikdo neuvidí tvůj email.
             </p>
           </div>
         </section>
