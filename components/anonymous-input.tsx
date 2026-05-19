@@ -29,7 +29,7 @@ export function AnonymousInput({
       >
         <div className="text-center">
           <span className="text-2xl mb-2 block">🌱</span>
-          <p className="font-serif text-lg text-amber-100">Dekujeme za sdileni</p>
+          <p className="font-serif text-lg text-amber-100">Děkujeme za sdileni</p>
           <p className="text-sm text-amber-100/60 mt-1">Nejsi v tom sám/sama</p>
         </div>
       </div>
