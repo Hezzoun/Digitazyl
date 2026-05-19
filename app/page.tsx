@@ -34,7 +34,7 @@ const exampleStories = [
   },
   {
     id: 4,
-    text: "Zitra mam dulezitou zkousku a strasne se bojim. Drzte mi palce, prosim.",
+    text: "Mám tejden plnej zkoušek a nemůžu popsat, jak moc jsou ty zkoušky důležitý. Budu na vejšce, jestli udělám maturitu, a jsem z toho tak nervózní a vystresovanej. Nevím, jestli moje snaha stačí.",
     category: "podpora",
     timeAgo: "Pred 3 h",
     hearts: 19,
@@ -42,7 +42,7 @@ const exampleStories = [
   },
   {
     id: 5,
-    text: "Dekuju neznamu cloveku, ktery mi dnes podrzel dvere a usmal se na me. Mala vec, velky dopad.",
+    text: "Dnes bych chtěla poděkovat jednomu neznámému člověku. Našla jsem malý balíček se vzkazem, který mi dokázal vykouzlit úsměv na tváři. Možná to pro někoho byla jen drobnost, ale pro mě to má mnohem větší význam.",
     category: "vdecnost",
     timeAgo: "Pred 4 h",
     hearts: 31,
