@@ -11,39 +11,39 @@ import { Send, Feather } from "lucide-react"
 const exampleStories = [
   {
     id: 1,
-    text: "Dneska je jeden z těch dnů, kdy mám pocit, ze uz nemuzu. Vsechno je moc.",
-    category: "Vyzpovídat",
+    text: "Dneska je jeden z těch dnů, kdy mám pocit, že už nemůžu dál. Všechno je tak těžké. Co vám pomáhá, když je všechno naprd?",
+    category: "vypsat",
     timeAgo: "Pred 45 min",
     hearts: 23,
   },
   {
     id: 2,
-    text: "Po měsíci prokrastynovaného času, jsem uklidil byt a citím se líp, díky vám všem! :).",
-    category: "Výhry",
+    text: "Po měsíci jsem konečně uklidil celý byt. Možna maličkost, ale pro mě obrovský krok. Dlouho jsem jen prokrastinoval a jen scrolloval socialní sítě. Jsem rád, že jsem objevil místo, které mě motivuje :)",
+    category: "vyhry",
     timeAgo: "Pred 1 h",
     hearts: 47,
     emoji: "🌿",
   },
   {
     id: 3,
-    text: "Dnes jsem se smála tak, že mě bolelo břicho. Dlouho jsem se takhle fajn necítila.",
-    category: "Radosti",
+    text: "Dnes jsem se smála tak, že mě bolelo břicho. Dlouho jsem se takhle nezasmála. Stačilo jen vidět jak můj kolega, rozlil v mé přítomnosti kávičku z toho jak je vždy nervozní když jsme spolu. Brzo si s ním vyjdu, když mě on nepozve tak já :)",
+    category: "radosti",
     timeAgo: "Pred 2 h",
     hearts: 36,
     emoji: "🌟",
   },
   {
     id: 4,
-    text: "Zítra mi čeká pohovor, vůbec nevím co budu říkat, držte mi palce :)",
-    category: "Podpora",
+    text: "Mám tejden plnej zkoušek a nemůžu popsat, jak moc jsou ty zkoušky důležitý. Budu na vejšce, jestli udělám maturitu, a jsem z toho tak nervózní a vystresovanej. Nevím, jestli moje snaha stačí.",
+    category: "podpora",
     timeAgo: "Pred 3 h",
     hearts: 19,
     emoji: "🙏",
   },
   {
     id: 5,
-    text: "Děkuju neznámému člověku, který mi dnes podržel dveře a usmál se na me. Malá věc, velký dopad.",
-    category: "Vděčnost",
+    text: "Dnes bych chtěla poděkovat jednomu neznámému člověku. Našla jsem malý balíček se vzkazem, který mi dokázal vykouzlit úsměv na tváři. Možná to pro někoho byla jen drobnost, ale pro mě to má mnohem větší význam.",
+    category: "vdecnost",
     timeAgo: "Pred 4 h",
     hearts: 31,
     emoji: "💗",
@@ -77,7 +77,7 @@ export default function Home() {
           className="object-cover"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/10 to-black/40" />
+        <div className="absolute inset-0 bg-linear-to-b from-black/20 via-black/10 to-black/40" />
       </div>
 
       {/* Content */}
@@ -112,7 +112,7 @@ export default function Home() {
               Tady můžeš být sám sebou.
             </h1>
             <p className="mt-4 text-xl md:text-2xl text-white/80 font-light">
-              Co máš v sobě?
+              Tady nemusíš bojovat o pozornost.
             </p>
 
             {/* Decorative line with feather */}
@@ -152,7 +152,7 @@ export default function Home() {
           <div className="max-w-6xl mx-auto">
             <div className="flex items-center justify-center gap-2">
               <h2 className="text-lg text-white/90 font-light">
-                Příběhy lidí jako ty.
+                Pribehy lidi jako ty
               </h2>
               <span className="text-white/60">🤍</span>
             </div>

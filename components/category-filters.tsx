@@ -9,12 +9,12 @@ interface CategoryFiltersProps {
 }
 
 const categories = [
-  { id: "vsechno", label: "Vsechno", icon: <Globe className="w-4 h-4" /> },
-  { id: "vypsat", label: "Potrebuji se vypsat", icon: <Cloud className="w-4 h-4" /> },
-  { id: "podpora", label: "Potrebuji podporu", icon: <HeartHandshake className="w-4 h-4" /> },
-  { id: "vyhry", label: "Male vyhry", icon: <Sprout className="w-4 h-4" /> },
+  { id: "všechno", label: "Všechno", icon: <Globe className="w-4 h-4" /> },
+  { id: "vypsat", label: "Potřebuji se vypsat", icon: <Cloud className="w-4 h-4" /> },
+  { id: "podpora", label: "Potřebuji podporu", icon: <HeartHandshake className="w-4 h-4" /> },
+  { id: "výhry", label: "Malé výhry", icon: <Sprout className="w-4 h-4" /> },
   { id: "radosti", label: "Radosti", icon: <Sun className="w-4 h-4" /> },
-  { id: "vdecnost", label: "Vdecnost", icon: <Heart className="w-4 h-4" /> },
+  { id: "vděčnost", label: "Vděčnost", icon: <Heart className="w-4 h-4" /> },
 ]
 
 export function CategoryFilters({ activeCategory, onCategoryChange }: CategoryFiltersProps) {
