@@ -51,7 +51,7 @@ export default function RegistracePage() {
               className="flex items-center gap-2 text-sm text-white/80 hover:text-white transition-colors"
             >
               <ArrowLeft className="w-4 h-4" />
-              Zpet na hlavni stranku
+              Zpět na hlavní stránku
             </Link>
           </div>
         </header>
@@ -62,10 +62,10 @@ export default function RegistracePage() {
             {/* Title */}
             <div className="text-center mb-8">
               <h1 className="font-serif text-3xl md:text-4xl font-medium text-white leading-tight tracking-tight">
-                Vytvor si ucet
+                Vytvoř si účet
               </h1>
               <p className="mt-3 text-white/70">
-                Pridej se k bezpecnemu prostoru pro sdileni
+                Přidej se k bezpečnému prostoru pro sdílení.
               </p>
 
               {/* Decorative line with feather */}
@@ -82,7 +82,7 @@ export default function RegistracePage() {
                 {/* Username */}
                 <div>
                   <label htmlFor="username" className="block text-sm font-medium text-[#2d4a3e] mb-2">
-                    Uzivatelske jmeno
+                    Uživatelské jméno
                   </label>
                   <input
                     type="text"
