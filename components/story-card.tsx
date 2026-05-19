@@ -24,13 +24,13 @@ const categoryConfig: Record<string, {
   textColor: string
 }> = {
   vypsat: { 
-    label: "Potrebuji se vypsat", 
+    label: "Potřebuji se vypsat", 
     icon: <Cloud className="w-3.5 h-3.5" />,
     bgColor: "bg-rose-400/20",
     textColor: "text-rose-300"
   },
   vyhry: { 
-    label: "Male vyhry", 
+    label: "Malé výhry", 
     icon: <Sprout className="w-3.5 h-3.5" />,
     bgColor: "bg-emerald-400/20",
     textColor: "text-emerald-300"
@@ -42,13 +42,13 @@ const categoryConfig: Record<string, {
     textColor: "text-amber-300"
   },
   podpora: { 
-    label: "Potrebuji podporu", 
+    label: "Potřebuji podporu", 
     icon: <HeartHandshake className="w-3.5 h-3.5" />,
     bgColor: "bg-pink-400/20",
     textColor: "text-pink-300"
   },
   vdecnost: { 
-    label: "Vdecnost", 
+    label: "Vděčnost", 
     icon: <Heart className="w-3.5 h-3.5" />,
     bgColor: "bg-rose-400/20",
     textColor: "text-rose-300"
