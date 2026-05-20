@@ -73,7 +73,7 @@ export default function Home() {
       {/* Background Image */}
       <div className="fixed inset-0 z-0">
         <Image
-          src="/images/lake-mountains-bg.jpg"
+          src="/images/lake-mountains-bg1.png"
           alt=""
           fill
           className="object-cover"
@@ -154,7 +154,7 @@ export default function Home() {
           <div className="max-w-6xl mx-auto">
             <div className="flex items-center justify-center gap-2">
               <h2 className="text-lg text-white/90 font-light">
-                Příběhy skutečných lidí, kteří tě uslyší.
+                Příběhy skutečných lidí, kteří tě vyslyší.
               </h2>
               <span className="text-white/60">🤍</span>
             </div>
