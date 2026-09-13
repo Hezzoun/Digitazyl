@@ -24,6 +24,35 @@
   transform: scale(1.035);
 }
 
+.intro__background::before,
+.intro__background::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50%;
+  background-image: url("/picture/digitazyl-portal.png");
+  background-size: 200% 100%;
+  background-repeat: no-repeat;
+  opacity: 0;
+  z-index: 1;
+}
+
+.intro__background::before { left: 0; background-position: left center; }
+.intro__background::after { right: 0; background-position: right center; }
+
+.intro__backdrop::after {
+  content: "";
+  position: absolute;
+  inset: -35%;
+  z-index: 2;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 224, 169, .92) 0, rgba(255, 209, 133, .48) 11%, rgba(255, 190, 112, 0) 38%);
+  opacity: 0;
+  transform: scale(.12);
+  pointer-events: none;
+}
+
 .intro__content {
   position: relative;
   z-index: 2;
@@ -136,12 +165,16 @@
 
 .intro__entry:focus-visible { box-shadow: 0 0 0 4px rgba(255, 241, 208, .2), 0 0 28px rgba(239, 204, 146, .35); }
 .intro__entry svg { width: 1.7rem; fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.35; }
+.intro__entry:not(:disabled) { animation: eye-heartbeat 4.8s ease-in-out infinite; }
 .intro__entry circle { fill: currentColor; stroke: none; }
 .intro__hint { position: absolute; bottom: 1.7rem; left: 0; right: 0; margin: 0; text-align: center; font-size: .58rem; letter-spacing: .3em; text-transform: uppercase; color: rgba(255,247,231,.52); opacity: 0; animation: copy-in .7s 4.7s ease-out forwards; }
 
-.intro--leaving .intro__content { animation: content-leave .7s ease-in both; }
-.intro--leaving .intro__backdrop { animation: door-open .85s ease-in both; }
-.intro--leaving .intro__entry { animation: entry-bloom .85s ease-in both; }
+.intro--leaving .intro__content { animation: content-leave .7s .35s ease-in both; }
+.intro--leaving .intro__backdrop { animation: door-open 1.9s ease-in both; }
+.intro--leaving .intro__background::before { animation: wing-left 1.65s .2s cubic-bezier(.2,.75,.2,1) both; }
+.intro--leaving .intro__background::after { animation: wing-right 1.65s .2s cubic-bezier(.2,.75,.2,1) both; }
+.intro--leaving .intro__backdrop::after { animation: portal-light 1.9s .05s cubic-bezier(.2,.6,.2,1) both; }
+.intro--leaving .intro__entry { animation: entry-bloom 1.2s ease-in both; }
 
 @keyframes backdrop-reveal { from { opacity: 0; transform: scale(1.08); } to { opacity: 1; transform: scale(1); } }
 @keyframes logo-stroke { to { stroke-dashoffset: 0; } }
@@ -151,7 +184,11 @@
 @keyframes logo-breathe { 0%, 78%, 100% { transform: scale(1); filter: drop-shadow(0 0 13px rgba(255,229,185,.42)); } 82% { transform: scale(1.025); filter: drop-shadow(0 0 20px rgba(255,229,185,.66)); } 86% { transform: scale(1.01); } 90% { transform: scale(1.025); filter: drop-shadow(0 0 18px rgba(255,229,185,.58)); } }
 @keyframes content-leave { to { opacity: 0; transform: scale(.96); filter: blur(7px); } }
 @keyframes door-open { to { transform: scale(1.16); filter: brightness(1.34) blur(5px); opacity: .2; } }
-@keyframes entry-bloom { to { transform: scale(11); opacity: 0; box-shadow: 0 0 80px 40px rgba(255,232,189,.5); } }
+@keyframes entry-bloom { 0% { filter: brightness(1); } 18% { filter: brightness(1.55); box-shadow: 0 0 34px 10px rgba(255,232,189,.42); } 100% { transform: translate(-50%, -50%) scale(8); opacity: 0; box-shadow: 0 0 90px 48px rgba(255,232,189,.58); } }
+@keyframes eye-heartbeat { 0%, 67%, 100% { transform: translate(-50%, -50%) scale(1); } 70% { transform: translate(-50%, -50%) scale(1.025); } 74% { transform: translate(-50%, -50%) scale(1); } 78% { transform: translate(-50%, -50%) scale(1.02); } 82% { transform: translate(-50%, -50%) scale(1); } }
+@keyframes wing-left { 0% { opacity: 0; transform: translateX(0); } 18% { opacity: .85; } 100% { opacity: .8; transform: translateX(-38%); } }
+@keyframes wing-right { 0% { opacity: 0; transform: translateX(0); } 18% { opacity: .85; } 100% { opacity: .8; transform: translateX(38%); } }
+@keyframes portal-light { 0% { opacity: 0; transform: scale(.12); } 22% { opacity: .9; } 100% { opacity: 1; transform: scale(1.25); } }
 
 @media (max-width: 600px) { .intro__background { background-position: 50% center; } .intro__logo-stage { width: 142px; } .intro__content { padding-bottom: 5rem; } }
 
@@ -161,5 +198,6 @@
   .intro__logo-line { animation: none; stroke-dashoffset: 0; }
   .intro__logo-dot { animation: none; opacity: 1; }
   .intro__laser { display: none; }
+  .intro__entry:not(:disabled), .intro__background::before, .intro__background::after, .intro__backdrop::after { animation: none; }
   .intro--leaving .intro__content, .intro--leaving .intro__backdrop, .intro--leaving .intro__entry { animation: none; }
 }

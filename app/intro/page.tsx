@@ -11,7 +11,7 @@ export default function IntroPage() {
   const enterDigitazyl = () => {
     if (isLeaving) return
     setIsLeaving(true)
-    window.setTimeout(() => router.replace("/home"), 850)
+    window.setTimeout(() => router.replace("/home"), 1900)
   }
 
   return (
