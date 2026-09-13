@@ -1,6 +1,5 @@
 "use client"
 
-import Image from "next/image"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
 import "./intro.css"
@@ -18,14 +17,7 @@ export default function IntroPage() {
   return (
     <main className={`intro ${isLeaving ? "intro--leaving" : ""}`}>
       <div className="intro__backdrop" aria-hidden="true">
-        <Image
-          src="/images/lake-mountains-bg1.png"
-          alt=""
-          fill
-          priority
-          sizes="100vw"
-          className="intro__background"
-        />
+        <div className="intro__background" role="img" aria-label="Atmospheric portal with a cosmic sky and warm light" />
         <div className="intro__veil" />
       </div>
 
