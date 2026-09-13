@@ -1,0 +1,3 @@
+import { SiteHeader } from "./site-header"
+import { SafetyBar } from "./safety-bar"
+export function PageShell({ title, subtitle, children }: { title: string; subtitle: string; children: React.ReactNode }) { return <main className="min-h-screen bg-[#071518] text-white"><SiteHeader /><div className="mx-auto max-w-7xl px-5 py-12 lg:px-8 lg:py-16"><header className="max-w-3xl"><p className="mb-4 text-xs uppercase tracking-[.3em] text-amber-100/60">Digitazyl</p><h1 className="font-serif text-4xl leading-tight text-amber-50 md:text-6xl">{title}</h1><p className="mt-5 text-lg leading-8 text-white/55">{subtitle}</p></header><div className="mt-10">{children}</div></div><div className="border-t border-white/10 px-5 py-6"><SafetyBar /></div></main> }
