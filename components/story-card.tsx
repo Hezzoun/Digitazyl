@@ -2,109 +2,62 @@
 
 import { useState } from "react"
 import { cn } from "@/lib/utils"
-import { Cloud, Sprout, Sun, Heart, HeartHandshake } from "lucide-react"
+import { Cloud, HeartHandshake, MessageCircleHeart, Sprout, Sun, Heart } from "lucide-react"
 
-interface Story {
-  id: number
+export interface Post {
+  id: string
   text: string
   category: string
   timeAgo: string
-  hearts: number
-  emoji?: string
+  reactions: { rozumim: number; nejsi: number; drz: number }
 }
 
-interface StoryCardProps {
-  story: Story
+interface PostCardProps { post: Post }
+
+const categoryConfig: Record<string, { label: string; icon: typeof Cloud; tone: string }> = {
+  vypsat: { label: "Potřebuji se vypsat", icon: Cloud, tone: "text-rose-200 bg-rose-300/15" },
+  podpora: { label: "Potřebuji podporu", icon: HeartHandshake, tone: "text-pink-200 bg-pink-300/15" },
+  uspechy: { label: "Malé úspěchy", icon: Sprout, tone: "text-emerald-200 bg-emerald-300/15" },
+  radosti: { label: "Radosti", icon: Sun, tone: "text-amber-100 bg-amber-300/15" },
+  "vděčnost": { label: "Vděčnost", icon: Heart, tone: "text-rose-200 bg-rose-300/15" },
 }
 
-const categoryConfig: Record<string, { 
-  label: string
-  icon: React.ReactNode
-  bgColor: string
-  textColor: string
-}> = {
-  vypsat: { 
-    label: "Zpovědnice", 
-    icon: <Cloud className="w-3.5 h-3.5" />,
-    bgColor: "bg-rose-400/20",
-    textColor: "text-rose-300"
-  },
-  vyhry: { 
-    label: "Úspěchy", 
-    icon: <Sprout className="w-3.5 h-3.5" />,
-    bgColor: "bg-emerald-400/20",
-    textColor: "text-emerald-300"
-  },
-  radosti: { 
-    label: "Radosti", 
-    icon: <Sun className="w-3.5 h-3.5" />,
-    bgColor: "bg-amber-400/20",
-    textColor: "text-amber-300"
-  },
-  podpora: { 
-    label: "Pochopení", 
-    icon: <HeartHandshake className="w-3.5 h-3.5" />,
-    bgColor: "bg-pink-400/20",
-    textColor: "text-pink-300"
-  },
-  vdecnost: { 
-    label: "Vděčnost", 
-    icon: <Heart className="w-3.5 h-3.5" />,
-    bgColor: "bg-rose-400/20",
-    textColor: "text-rose-300"
-  },
-}
+export function PostCard({ post }: PostCardProps) {
+  const [reactions, setReactions] = useState(post.reactions)
+  const [selected, setSelected] = useState<string | null>(null)
+  const config = categoryConfig[post.category] ?? categoryConfig.vypsat
+  const CategoryIcon = config.icon
 
-export function StoryCard({ story }: StoryCardProps) {
-  const [hearts, setHearts] = useState(story.hearts)
-  const [liked, setLiked] = useState(false)
-  
-  const config = categoryConfig[story.category] || categoryConfig.vypsat
-
-  const handleLike = () => {
-    if (liked) {
-      setHearts(prev => prev - 1)
-      setLiked(false)
-    } else {
-      setHearts(prev => prev + 1)
-      setLiked(true)
-    }
+  const react = (key: keyof Post["reactions"]) => {
+    setReactions((current) => ({ ...current, [key]: current[key] + (selected === key ? -1 : 1) }))
+    setSelected(selected === key ? null : key)
   }
 
   return (
-    <article className="shrink-0 w-[220px] bg-black/40 backdrop-blur-md rounded-2xl p-5 border border-white/10 shadow-xl snap-start hover:bg-black/50 transition-colors">
-      {/* Category tag */}
-      <div className={cn(
-        "inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium mb-4",
-        config.bgColor,
-        config.textColor
-      )}>
-        {config.icon}
-        {config.label}
-      </div>
-      
-      {/* Story text */}
-      <p className="text-white/90 text-sm leading-relaxed font-light italic min-h-[80px]">
-        {story.text}
-        {story.emoji && <span className="ml-1">{story.emoji}</span>}
-      </p>
-      
-      {/* Footer */}
-      <div className="flex items-center justify-between mt-4 pt-3 border-t border-white/10">
-        <span className="text-xs text-white/40">
-          {story.timeAgo}
+    <article className="flex min-h-[286px] w-full shrink-0 snap-start flex-col rounded-3xl border border-white/12 bg-[#0c1718]/70 p-5 shadow-xl shadow-black/20 backdrop-blur-xl transition-colors hover:bg-[#122020]/80 sm:w-[285px]">
+      <div className="flex items-start justify-between gap-3">
+        <span className={cn("inline-flex max-w-[88%] items-center gap-2 rounded-full px-3 py-1.5 text-xs font-medium", config.tone)}>
+          <CategoryIcon className="size-3.5" />
+          <span className="truncate">{config.label}</span>
         </span>
-        <button 
-          onClick={handleLike}
-          className={cn(
-            "flex items-center gap-1.5 transition-colors",
-            liked ? "text-rose-400" : "text-white/40 hover:text-rose-300"
-          )}
-        >
-          <Heart className={cn("w-4 h-4", liked && "fill-current")} />
-          <span className="text-xs font-medium">{hearts}</span>
-        </button>
+        <span className="mt-1 text-white/35" aria-hidden="true"><MessageCircleHeart className="size-4" /></span>
+      </div>
+      <div className="mt-5 flex items-center gap-2 text-xs text-white/45">
+        <span className="size-1.5 rounded-full bg-emerald-300/70" />
+        <span>Anonymně</span><span aria-hidden="true">·</span><span>{post.timeAgo}</span>
+      </div>
+      <p className="mt-4 flex-1 text-sm leading-7 text-white/85">{post.text}</p>
+      <div className="mt-5 flex flex-wrap gap-2 border-t border-white/10 pt-4">
+        <ReactionButton label="Rozumím" count={reactions.rozumim} active={selected === "rozumim"} onClick={() => react("rozumim")} />
+        <ReactionButton label="Nejsi v tom sám" count={reactions.nejsi} active={selected === "nejsi"} onClick={() => react("nejsi")} />
+        <ReactionButton label="Drž se" count={reactions.drz} active={selected === "drz"} onClick={() => react("drz")} />
       </div>
     </article>
   )
 }
+
+function ReactionButton({ label, count, active, onClick }: { label: string; count: number; active: boolean; onClick: () => void }) {
+  return <button type="button" onClick={onClick} className={cn("rounded-full border px-2.5 py-1.5 text-[11px] transition-colors", active ? "border-amber-200/50 bg-amber-200/15 text-amber-100" : "border-white/10 text-white/50 hover:border-white/25 hover:text-white/80")}><span>{label}</span> <span className="text-white/35">{count}</span></button>
+}
+
+export { PostCard as StoryCard }

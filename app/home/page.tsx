@@ -2,71 +2,51 @@
 
 import { useState } from "react"
 import { AnonymousInput } from "@/components/anonymous-input"
-import { StoryCard } from "@/components/story-card"
+import { PostCard, type Post } from "@/components/story-card"
 import { CategoryFilters } from "@/components/category-filters"
 import { TrustBadges } from "@/components/trust-badges"
 import Image from "next/image"
 import Link from "next/link"
-import { Send, Feather } from "lucide-react"
+import { Feather } from "lucide-react"
 
-const exampleStories = [
-  {
-    id: 1,
-    text: "Dneska je jeden z těch dnů, kdy mám pocit, že už nemůžu dál. Všechno je tak těžké. Co vám pomáhá, když je všechno naprd?",
-    category: "vypsat",
-    timeAgo: "Pred 45 min",
-    hearts: 23,
-    emoji: "🕸️",
-  },
-  {
-    id: 2,
-    text: "Po měsíci jsem konečně uklidil celý byt. Možna maličkost, ale pro mě obrovský krok. Dlouho jsem jen prokrastinoval a jen scrolloval socialní sítě. Jsem rád, že jsem objevil místo, které mě motivuje :)",
-    category: "vyhry",
-    timeAgo: "Pred 1 h",
-    hearts: 47,
-    emoji: "🌿",
-  },
-  {
-    id: 3,
-    text: "Dnes jsem se smála tak, že mě bolelo břicho. Dlouho jsem se takhle nezasmála. Stačilo jen vidět jak můj kolega, rozlil v mé přítomnosti kávičku z toho jak je vždy nervozní když jsme spolu. Brzo si s ním vyjdu, když mě on nepozve tak já jeho ano :))",
-    category: "radosti",
-    timeAgo: "Pred 2 h",
-    hearts: 36,
-    emoji: "🌟",
-  },
-  {
-    id: 4,
-    text: "Mám tejden plnej zkoušek a nemůžu popsat, jak moc jsou ty zkoušky důležitý. Budu na vejšce, jestli udělám maturitu, a jsem z toho tak nervózní a vystresovanej. Nevím, jestli moje snaha stačí.",
-    category: "podpora",
-    timeAgo: "Pred 3 h",
-    hearts: 19,
-    emoji: "🙏",
-  },
-  {
-    id: 5,
-    text: "Dnes bych chtěla poděkovat jednomu neznámému člověku. Našla jsem malý balíček se vzkazem, který mi dokázal vykouzlit úsměv na tváři. Možná to pro někoho byla jen drobnost, ale pro mě to má mnohem větší význam.",
-    category: "vdecnost",
-    timeAgo: "Pred 4 h",
-    hearts: 31,
-    emoji: "💗",
-  },
+const examplePosts: Post[] = [
+  { id: "example-1", text: "Dneska je jeden z těch dnů, kdy mám pocit, že už nemůžu dál. Všechno je tak těžké. Co vám pomáhá, když je všechno naprd?", category: "vypsat", timeAgo: "před 45 min", reactions: { rozumim: 23, nejsi: 8, drz: 4 } },
+  { id: "example-2", text: "Po měsíci jsem konečně uklidil celý byt. Možná maličkost, ale pro mě obrovský krok. Dlouho jsem jen prokrastinoval. Jsem rád, že jsem objevil místo, které mě motivuje.", category: "uspechy", timeAgo: "před 1 h", reactions: { rozumim: 47, nejsi: 12, drz: 5 } },
+  { id: "example-3", text: "Dnes jsem se smála tak, že mě bolelo břicho. Dlouho jsem se takhle nezasmála. Někdy stačí malý okamžik a den se úplně změní.", category: "radosti", timeAgo: "před 2 h", reactions: { rozumim: 36, nejsi: 9, drz: 3 } },
+  { id: "example-4", text: "Mám týden plný zkoušek a nemůžu popsat, jak moc jsou důležité. Jsem z toho nervózní a vystresovaný. Nevím, jestli moje snaha stačí.", category: "podpora", timeAgo: "před 3 h", reactions: { rozumim: 19, nejsi: 14, drz: 7 } },
+  { id: "example-5", text: "Dnes bych chtěla poděkovat jednomu neznámému člověku. Malý balíček se vzkazem mi dokázal vykouzlit úsměv na tváři.", category: "vděčnost", timeAgo: "před 4 h", reactions: { rozumim: 31, nejsi: 6, drz: 2 } },
 ]
+
+const initialPost: Post = {
+  id: "latest-message",
+  text: "Dneska jsem potřeboval někde říct, co mám v hlavě.",
+  category: "vypsat",
+  timeAgo: "před chvílí",
+  reactions: { rozumim: 12, nejsi: 5, drz: 2 },
+}
 
 export default function Home() {
   const [text, setText] = useState("")
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [submitted, setSubmitted] = useState(false)
-  const [activeCategory, setActiveCategory] = useState<string>("vsechno")
+  const [latestMessage, setLatestMessage] = useState(initialPost)
+  const [activeCategory, setActiveCategory] = useState("všechno")
 
-  const handleSubmit = async () => {
-    if (!text.trim()) return
-    setIsSubmitting(true)
-    await new Promise(resolve => setTimeout(resolve, 1000))
-    setIsSubmitting(false)
-    setSubmitted(true)
+  const handleSubmit = () => {
+    const submittedText = text.trim()
+    if (!submittedText) return
+    setLatestMessage({ ...initialPost, text: submittedText, timeAgo: "právě teď" })
     setText("")
-    setTimeout(() => setSubmitted(false), 3000)
   }
+
+  const handleComposerKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (event.key === "Enter" && !event.shiftKey && !event.nativeEvent.isComposing && event.keyCode !== 229) {
+      event.preventDefault()
+      handleSubmit()
+    }
+  }
+
+  const posts = [latestMessage, ...examplePosts].filter((post) =>
+    activeCategory === "všechno" || post.category === activeCategory
+  )
 
   return (
     <main className="min-h-screen relative overflow-x-hidden">
@@ -129,12 +109,11 @@ export default function Home() {
         {/* Input Section */}
         <section className="px-6 pb-6">
           <div className="max-w-2xl mx-auto">
-            <AnonymousInput 
+            <AnonymousInput
               value={text}
               onChange={setText}
               onSubmit={handleSubmit}
-              isSubmitting={isSubmitting}
-              submitted={submitted}
+              onKeyDown={handleComposerKeyDown}
             />
           </div>
         </section>
@@ -165,8 +144,8 @@ export default function Home() {
         <section className="px-6 pb-12">
           <div className="max-w-6xl mx-auto">
             <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-hide snap-x snap-mandatory">
-              {exampleStories.map((story) => (
-                <StoryCard key={story.id} story={story} />
+              {posts.map((post) => (
+                <PostCard key={post.id} post={post} />
               ))}
             </div>
           </div>

@@ -1,86 +1,49 @@
 "use client"
 
 import { cn } from "@/lib/utils"
-import { Lock, CheckCircle, Send } from "lucide-react"
+import { Lock, ShieldCheck, Send } from "lucide-react"
 
 interface AnonymousInputProps {
   value: string
   onChange: (value: string) => void
   onSubmit: () => void
-  isSubmitting: boolean
-  submitted: boolean
+  onKeyDown: (event: React.KeyboardEvent<HTMLTextAreaElement>) => void
 }
 
 export function AnonymousInput({ 
   value, 
   onChange, 
-  onSubmit, 
-  isSubmitting,
-  submitted 
+  onSubmit,
+  onKeyDown,
 }: AnonymousInputProps) {
   return (
-    <div className="relative">
-      {/* Success message */}
-      <div 
-        className={cn(
-          "absolute inset-0 flex items-center justify-center bg-[#1a1a1a]/95 backdrop-blur-md rounded-2xl transition-all duration-500 z-10 border border-amber-500/20",
-          submitted ? "opacity-100" : "opacity-0 pointer-events-none"
-        )}
-      >
-        <div className="text-center">
-          <span className="text-2xl mb-2 block">🌱</span>
-          <p className="font-serif text-lg text-amber-100">Děkujeme za sdílení</p>
-          <p className="text-sm text-amber-100/60 mt-1">Nejsi v tom sám/sama</p>
+    <div className="rounded-3xl border border-white/15 bg-[#101b1b]/75 p-5 shadow-2xl shadow-black/30 backdrop-blur-xl md:p-7">
+      <label htmlFor="main-composer" className="mb-3 block font-serif text-2xl text-amber-50 md:text-3xl">Co máš v sobě?</label>
+      <textarea
+        id="main-composer"
+        value={value}
+        onChange={(event) => onChange(event.target.value)}
+        onKeyDown={onKeyDown}
+        placeholder="Co máš v sobě? Napiš to sem..."
+        rows={3}
+        className="w-full resize-none bg-transparent text-lg font-light leading-relaxed text-white outline-none placeholder:text-white/40"
+        aria-describedby="composer-safety"
+      />
+      <div id="composer-safety" className="mt-5 flex items-center justify-between gap-4 border-t border-white/10 pt-4">
+        <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-white/55">
+          <span className="flex items-center gap-2"><Lock className="size-3.5" /> Anonymně</span>
+          <span className="flex items-center gap-2"><ShieldCheck className="size-3.5" /> Bezpečný prostor</span>
+          <span className="hidden text-white/35 sm:inline">Enter odešle · Shift + Enter nový řádek</span>
         </div>
-      </div>
-
-      {/* Input area - Premium cream card as focal point */}
-      <div className="bg-[#f5f0e6] rounded-2xl p-6 shadow-2xl shadow-black/30">
-        <input
-          type="text"
-          value={value}
-          onChange={(e) => onChange(e.target.value)}
-          placeholder="Jak to dnes jde? Sdílej co tě napadne."
-          className={cn(
-            "w-full bg-transparent",
-            "text-[#2d4a3e] placeholder:text-[#2d4a3e]/50",
-            "text-lg md:text-xl",
-            "focus:outline-none",
-            "font-light"
-          )}
-        />
-        
-        <div className="flex items-center justify-between pt-6 mt-6 border-t border-[#2d4a3e]/10">
-          <div className="flex items-center gap-4">
-            <div className="flex items-center gap-2 text-[#2d4a3e]/60">
-              <Lock className="w-4 h-4" />
-              <span className="text-sm">Anonymní</span>
-            </div>
-            <div className="w-px h-4 bg-[#2d4a3e]/20" />
-            <div className="flex items-center gap-2 text-[#2d4a3e]/60">
-              <CheckCircle className="w-4 h-4" />
-              <span className="text-sm">Bez soudu</span>
-            </div>
-          </div>
-          
-          <button
-            onClick={onSubmit}
-            disabled={!value.trim() || isSubmitting}
-            className={cn(
-              "w-12 h-12 rounded-full flex items-center justify-center",
-              "bg-[#2d4a3e] hover:bg-[#243d33] text-white",
-              "transition-all duration-300",
-              "disabled:opacity-50 disabled:cursor-not-allowed",
-              "shadow-lg hover:shadow-xl"
-            )}
-          >
-            {isSubmitting ? (
-              <span className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-            ) : (
-              <Send className="w-5 h-5" />
-            )}
-          </button>
-        </div>
+        <button
+          type="button"
+          onClick={onSubmit}
+          disabled={!value.trim()}
+          aria-label="Odeslat příspěvek"
+          className={cn("grid size-12 shrink-0 place-items-center rounded-full bg-amber-200 text-[#18302b] shadow-lg shadow-amber-950/20 transition-all hover:bg-amber-100 hover:shadow-amber-200/20 disabled:cursor-not-allowed disabled:opacity-35")}
+        >
+          <Send className="size-5" />
+        </button>
       </div>
     </div>
   )
