@@ -1,0 +1,174 @@
+.intro {
+  --warm-white: rgba(255, 247, 231, 0.96);
+  --gold: rgba(239, 204, 146, 0.9);
+  position: relative;
+  min-height: 100svh;
+  overflow: hidden;
+  isolation: isolate;
+  background: #090b0b;
+  color: var(--warm-white);
+}
+
+.intro__backdrop,
+.intro__veil {
+  position: absolute;
+  inset: 0;
+}
+
+.intro__backdrop {
+  z-index: -2;
+  animation: backdrop-reveal 3.2s cubic-bezier(.2,.65,.25,1) both;
+}
+
+.intro__background {
+  object-fit: cover;
+  object-position: center;
+  filter: saturate(.72) brightness(.7);
+  transform: scale(1.035);
+}
+
+.intro__veil {
+  z-index: 1;
+  background:
+    radial-gradient(circle at 50% 45%, rgba(34, 25, 19, .04), rgba(4, 7, 7, .49) 72%),
+    linear-gradient(180deg, rgba(4, 6, 6, .58), rgba(7, 9, 8, .2) 45%, rgba(4, 6, 6, .72));
+}
+
+.intro__content {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1.5rem 6rem;
+  text-align: center;
+}
+
+.intro__brand-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.intro__logo-stage {
+  position: relative;
+  width: clamp(128px, 18vw, 176px);
+  aspect-ratio: 1;
+  animation: logo-breathe 5.2s 4.1s ease-in-out infinite;
+}
+
+.intro__logo {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  filter: drop-shadow(0 0 13px rgba(255, 229, 185, .42));
+}
+
+.intro__logo-line {
+  fill: none;
+  stroke: var(--warm-white);
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 420;
+  stroke-dashoffset: 420;
+  animation: logo-stroke 2.25s 1.1s cubic-bezier(.77,0,.18,1) forwards;
+}
+
+.intro__logo-line--open { stroke-dasharray: 180; stroke-dashoffset: 180; animation-delay: 1.6s; }
+.intro__logo-dot { fill: var(--warm-white); opacity: 0; animation: dot-in .35s 2.95s ease-out forwards; }
+
+.intro__laser {
+  position: absolute;
+  top: 5%;
+  bottom: 5%;
+  left: 0;
+  width: 2px;
+  opacity: 0;
+  background: #fff9ef;
+  box-shadow: 0 0 7px 2px var(--gold), 0 0 20px 5px rgba(246, 205, 140, .45);
+  animation: laser-sweep 2.25s 1.1s cubic-bezier(.77,0,.18,1) forwards;
+}
+
+.intro__wordmark {
+  margin-top: 1.15rem;
+  font-family: var(--font-sans), sans-serif;
+  font-size: .68rem;
+  font-weight: 500;
+  letter-spacing: .56em;
+  padding-left: .56em;
+  opacity: 0;
+  animation: copy-in .8s 3.7s ease-out forwards;
+}
+
+.intro__copy {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.55rem;
+  margin-top: clamp(2.7rem, 7vh, 4.75rem);
+  opacity: 0;
+  animation: copy-in .9s 4s ease-out forwards;
+}
+
+.intro__copy h1 {
+  margin: 0;
+  font-family: var(--font-serif), Georgia, serif;
+  font-size: clamp(1.45rem, 3vw, 2.15rem);
+  font-weight: 400;
+  letter-spacing: .015em;
+  text-shadow: 0 2px 22px rgba(0,0,0,.34);
+}
+
+.intro__entry {
+  display: grid;
+  width: 4.25rem;
+  height: 4.25rem;
+  place-items: center;
+  border: 1px solid rgba(251, 231, 196, .64);
+  border-radius: 999px;
+  background: rgba(17, 21, 20, .3);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.14), 0 0 0 rgba(240, 203, 145, 0);
+  color: var(--warm-white);
+  cursor: pointer;
+  backdrop-filter: blur(12px);
+  transition: transform .35s ease, box-shadow .35s ease, background .35s ease;
+}
+
+.intro__entry:hover,
+.intro__entry:focus-visible {
+  outline: none;
+  transform: scale(1.07);
+  background: rgba(35, 35, 29, .47);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.2), 0 0 28px rgba(239, 204, 146, .28);
+}
+
+.intro__entry:focus-visible { box-shadow: 0 0 0 4px rgba(255, 241, 208, .2), 0 0 28px rgba(239, 204, 146, .35); }
+.intro__entry svg { width: 1.7rem; fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.35; }
+.intro__entry circle { fill: currentColor; stroke: none; }
+.intro__hint { position: absolute; bottom: 1.7rem; left: 0; right: 0; margin: 0; text-align: center; font-size: .58rem; letter-spacing: .3em; text-transform: uppercase; color: rgba(255,247,231,.52); opacity: 0; animation: copy-in .7s 4.7s ease-out forwards; }
+
+.intro--leaving .intro__content { animation: content-leave .7s ease-in both; }
+.intro--leaving .intro__backdrop { animation: door-open .85s ease-in both; }
+.intro--leaving .intro__entry { animation: entry-bloom .85s ease-in both; }
+
+@keyframes backdrop-reveal { from { opacity: 0; transform: scale(1.08); } to { opacity: 1; transform: scale(1); } }
+@keyframes logo-stroke { to { stroke-dashoffset: 0; } }
+@keyframes dot-in { to { opacity: 1; } }
+@keyframes laser-sweep { 0% { left: 0; opacity: 0; } 5% { opacity: 1; } 96% { opacity: 1; } 100% { left: 100%; opacity: 0; } }
+@keyframes copy-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes logo-breathe { 0%, 78%, 100% { transform: scale(1); filter: drop-shadow(0 0 13px rgba(255,229,185,.42)); } 82% { transform: scale(1.025); filter: drop-shadow(0 0 20px rgba(255,229,185,.66)); } 86% { transform: scale(1.01); } 90% { transform: scale(1.025); filter: drop-shadow(0 0 18px rgba(255,229,185,.58)); } }
+@keyframes content-leave { to { opacity: 0; transform: scale(.96); filter: blur(7px); } }
+@keyframes door-open { to { transform: scale(1.16); filter: brightness(1.34) blur(5px); opacity: .2; } }
+@keyframes entry-bloom { to { transform: scale(11); opacity: 0; box-shadow: 0 0 80px 40px rgba(255,232,189,.5); } }
+
+@media (max-width: 600px) { .intro__background { object-position: 58% center; } .intro__logo-stage { width: 142px; } .intro__content { padding-bottom: 5rem; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .intro__backdrop, .intro__logo, .intro__laser, .intro__wordmark, .intro__copy, .intro__hint, .intro__logo-stage { animation: none; }
+  .intro__backdrop, .intro__logo, .intro__wordmark, .intro__copy, .intro__hint { opacity: 1; }
+  .intro__logo-line { animation: none; stroke-dashoffset: 0; }
+  .intro__logo-dot { animation: none; opacity: 1; }
+  .intro__laser { display: none; }
+  .intro--leaving .intro__content, .intro--leaving .intro__backdrop, .intro--leaving .intro__entry { animation: none; }
+}
