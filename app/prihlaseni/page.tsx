@@ -11,7 +11,7 @@ export default function PrihlaseniPage() {
   return (
     <main className="auth-shell">
       <header className="auth-header">
-        <Link href="/home" className="brand" aria-label="Digitazyl domů"><img src="/icon.svg" alt="" className="size-8" /><span>DIGITAZYL</span></Link>
+        <Link href="/home" className="brand" aria-label="Digitazyl domů"><img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/logo-9TE7My27g32NGDlGFAyK5g02sJMBuB.png" alt="Digitazyl" className="size-10 rounded-full object-contain" /><span>DIGITAZYL</span></Link>
         <Link href="/home" className="auth-back"><ArrowLeft className="size-4" /> Zpět</Link>
       </header>
       <section className="auth-content">
