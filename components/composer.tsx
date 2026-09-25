@@ -3,19 +3,19 @@
 import { cn } from "@/lib/utils"
 import { Lock, ShieldCheck, Send } from "lucide-react"
 
-interface AnonymousInputProps {
+interface ComposerProps {
   value: string
   onChange: (value: string) => void
   onSubmit: () => void
   onKeyDown: (event: React.KeyboardEvent<HTMLTextAreaElement>) => void
 }
 
-export function AnonymousInput({ 
+export function Composer({ 
   value, 
   onChange, 
   onSubmit,
   onKeyDown,
-}: AnonymousInputProps) {
+}: ComposerProps) {
   return (
     <div className="rounded-3xl border border-white/15 bg-[#101b1b]/75 p-5 shadow-2xl shadow-black/30 backdrop-blur-xl md:p-7">
       <label htmlFor="main-composer" className="mb-3 block font-serif text-2xl text-amber-50 md:text-3xl">Co máš v sobě?</label>
@@ -31,7 +31,7 @@ export function AnonymousInput({
       />
       <div id="composer-safety" className="mt-5 flex items-center justify-between gap-4 border-t border-white/10 pt-4">
         <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-white/55">
-          <span className="flex items-center gap-2"><Lock className="size-3.5" /> Anonymně</span>
+          <span className="flex items-center gap-2"><Lock className="size-3.5" /> Bezpečný prostor</span>
           <span className="flex items-center gap-2"><ShieldCheck className="size-3.5" /> Bezpečný prostor</span>
           <span className="hidden text-white/35 sm:inline">Enter odešle · Shift + Enter nový řádek</span>
         </div>

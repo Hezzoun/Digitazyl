@@ -15,7 +15,7 @@ const playfair = Playfair_Display({
 
 export const metadata: Metadata = {
   title: 'DIGITAZYL – Nemusíš nic hrát',
-  description: 'Bezpečný prostor pro sdílení tvých myšlenek. Anonymně a bez odsouzení.',
+  description: 'Bezpečný prostor pro sdílení tvých myšlenek. S respektem a bez odsouzení.',
   generator: 'v0.app',
   icons: {
     icon: [

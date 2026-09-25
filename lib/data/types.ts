@@ -3,7 +3,6 @@ export type PostCategory = "vypsat" | "podpora" | "uspechy" | "radosti" | "vdě�
 export type Post = { id: string; text: string; category: PostCategory; timeAgo: string; reactions: Record<Reaction, number> }
 export type Topic = { id: string; name: string; description: string; count: number; custom?: boolean }
 export type MediaItem = { id: string; type: "hudba" | "obrazy" | "texty" | "fotografie" | "videa" | "projekty"; title: string }
-export type AnonymousUser = { id: string }
 export type SavedItem = { postId: string; savedAt: string }
 
 export const categoryLabels: Record<PostCategory | "všechno", string> = {
@@ -21,8 +20,7 @@ export const demoPosts: Post[] = [
 export const defaultPost: Post = { id: "latest-message", text: "Dneska jsem potřeboval někde říct, co mám v hlavě.", category: "vypsat", timeAgo: "před chvílí", reactions: { rozumim: 12, nejsi: 5, drz: 2 } }
 export const defaultTopics: Topic[] = ["Vztahy", "Rodina", "Práce", "Samota", "Strach", "Sebevědomí", "Radosti", "Každodenní život", "Tvorba", "Hudba", "Myšlenky"].map((name, index) => ({ id: `topic-${index}`, name, description: "Místo pro myšlenky, zkušenosti a vzájemnou podporu.", count: 0 }))
 
-export const storageKeys = { latest: "digitazyl.latest-message", reactions: "digitazyl.reactions", saved: "digitazyl.saved", user: "digitazyl.anonymous-user", topics: "digitazyl.topics" }
+export const storageKeys = { latest: "digitazyl.latest-message", reactions: "digitazyl.reactions", saved: "digitazyl.saved", topics: "digitazyl.topics" }
 
 export function readStorage<T>(key: string, fallback: T): T { if (typeof window === "undefined") return fallback; try { const raw = window.localStorage.getItem(key); return raw ? JSON.parse(raw) as T : fallback } catch { return fallback } }
 export function writeStorage<T>(key: string, value: T) { if (typeof window !== "undefined") window.localStorage.setItem(key, JSON.stringify(value)) }
-export function getAnonymousUser(): AnonymousUser { const existing = readStorage<AnonymousUser | null>(storageKeys.user, null); if (existing) return existing; const user = { id: `anon-${crypto.randomUUID?.() ?? Date.now()}` }; writeStorage(storageKeys.user, user); return user }
