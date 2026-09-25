@@ -59,7 +59,7 @@ export default function AppPage() {
       <Link href="/app" className="app-logo"><span className="logo-mark">◌</span><span><strong>DIGITAZYL</strong><small>Objev svůj vnitřní klid</small></span></Link>
       <label className="app-search"><Search /><input placeholder="Hledej příspěvky, témata, komunity..." aria-label="Hledej příspěvky, témata, komunity" /></label>
       <nav className="app-nav" aria-label="Hlavní navigace">
-        {[["Domů", LayoutGrid, "/app"], ["Témata", Compass, "/home#topics"], ["Komunity", Users, "/komunita"], ["Příběhy", MessageCircle, "/pribehy"], ["Lidé", UserRound, "/lide"]].map(([label, Icon, href]) => <Link key={label as string} href={href as string} className={label === "Domů" ? "active" : ""}><Icon /><span>{label as string}</span></Link>)}
+        {[["Domů", LayoutGrid, "/app"], ["Témata", Compass, "/temata"], ["Komunity", Users, "/komunita"], ["Příběhy", MessageCircle, "/pribehy"], ["Lidé", UserRound, "/lide"]].map(([label, Icon, href]) => <Link key={label as string} href={href as string} className={label === "Domů" ? "active" : ""}><Icon /><span>{label as string}</span></Link>)}
       </nav>
       <div className="app-actions"><button aria-label="Notifikace"><Bell /></button><button className="create-top" aria-label="Vytvořit příspěvek"><Plus /></button><Link href="/profil" className="profile-avatar" aria-label="Profil">{profileName[0]?.toUpperCase() ?? "A"}</Link></div>
     </header>
