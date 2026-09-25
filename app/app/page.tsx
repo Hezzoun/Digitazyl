@@ -8,15 +8,9 @@ import {
   MoreHorizontal, PenLine, Plus, Search, Send, Settings, Shield, Sparkles, UserRound, Users, X,
 } from "lucide-react"
 import { createClient } from "@/lib/supabase/client"
+import { topicDefinitions, topicStyle } from "@/lib/topics"
 
-const topics = [
-  ["Příroda", "https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=500&q=85"],
-  ["Gaming", "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=500&q=85"],
-  ["Hudba", "https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&w=500&q=85"],
-  ["Poradna", "https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=500&q=85"],
-  ["Technologie", "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=500&q=85"],
-  ["Auta & Moto", "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=500&q=85"],
-]
+const topics = topicDefinitions.slice(0, 6)
 const quickTopics = ["Příroda", "Gaming", "Hudba", "Poradna", "Technologie", "Auta & Moto", "Filmy & Seriály", "Knihy & Psaní", "Jídlo & Vaření", "Cestování", "Domov & Dílna", "Tvorba"]
 const posts = [
   { author: "Luna", topic: "Příroda", time: "před 2 hodinami", title: "Ranní klid v horách", text: "Někdy stačí jen vyjít ven, zhluboka se nadechnout a nechat všechno být. Hory mají zvláštní způsob, jak vrátit člověka zpět k sobě.", image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=900&q=85", likes: 128, comments: 24 },
@@ -76,7 +70,7 @@ export default function AppPage() {
         <div className="quick-topic-list"><p>RYCHLÉ TÉMATA</p>{quickTopics.map((topic, i) => <Link href="/temata" key={topic}><span className={`quick-image q${i}`} />{topic}</Link>)}<Link className="all-topics" href="/temata">Zobrazit všechna témata <ChevronRight /></Link></div>
       </aside>
       <section className="app-content">
-        <div className="topic-strip">{topics.map(([topic, image]) => <Link href="/temata" className="topic-tile" key={topic} style={{ backgroundImage: `linear-gradient(180deg, transparent 25%, rgba(1,7,10,.92)), url(${image})` }}><span>{topic}</span></Link>)}<Link href="/temata" className="topic-more">Další témata <ChevronRight /></Link></div>
+        <div className="topic-strip">{topics.map((topic) => <Link href={`/temata/${topic.slug}`} className="topic-tile" key={topic.slug} style={topicStyle(topic)}><span>{topic.name}</span></Link>)}<Link href="/temata" className="topic-more">Další témata <ChevronRight /></Link></div>
         <section className="composer glass-panel" id="composer"><div className="composer-avatar">J</div><div className="composer-main"><button className="composer-input" onClick={() => document.getElementById("composer-text")?.focus()}>Co máš v sobě?</button><textarea id="composer-text" value={composer} onChange={(e) => setComposer(e.target.value)} placeholder="Co máš v sobě?" aria-label="Co máš v sobě" /><div className="composer-options"><button><PenLine /> Příspěvek</button><button><ImageIcon /> Obrázek</button><button><LayoutGrid /> Anketa</button><button><MessageCircle /> Otázka</button><button><Sparkles /> Příběh</button><button className="send-button" disabled={!composer.trim()} onClick={() => { if (composer.trim()) { setSent(true); setComposer("") } }}>{sent ? "Odesláno" : "Odeslat"}</button></div></div></section>
         <div className="feed-tabs">{["Pro tebe", "Nejnovější", "Oblíbené", "Z komunity"].map((item) => <button key={item} className={tab === item ? "active" : ""} onClick={() => setTab(item)}>{item}</button>)}</div>
         <div className="post-list">{activePosts.map((post) => <article className="feed-post glass-panel" key={post.title}><div className="post-copy"><div className="post-author"><span className="author-avatar">{post.author[0]}</span><div><strong>{post.author}</strong><small>{post.time} · v <Link href="/temata">{post.topic}</Link></small></div></div><h2>{post.title}</h2><p>{post.text}</p><div className="post-meta"><button aria-pressed={likedPosts.includes(post.title)} onClick={() => setLikedPosts((current) => current.includes(post.title) ? current.filter((title) => title !== post.title) : [...current, post.title])}><Heart className={likedPosts.includes(post.title) ? "liked" : ""} /> {post.likes + (likedPosts.includes(post.title) ? 1 : 0)}</button><button onClick={() => setCommentingPost(commentingPost === post.title ? null : post.title)}><MessageCircle /> {post.comments}</button><button aria-label="Uložit" aria-pressed={savedPosts.includes(post.title)} onClick={() => setSavedPosts((current) => current.includes(post.title) ? current.filter((title) => title !== post.title) : [...current, post.title])}><Bookmark className={savedPosts.includes(post.title) ? "saved" : ""} /></button><button aria-label="Další možnosti"><MoreHorizontal /></button></div>{commentingPost === post.title && <form className="comment-form" onSubmit={(event) => { event.preventDefault(); if (comment.trim()) { setComment(""); setCommentingPost(null) } }}><input value={comment} onChange={(event) => setComment(event.target.value)} placeholder="Napiš komentář..." aria-label="Napiš komentář" /><button type="submit">Odeslat</button></form>}</div><img className="post-image" src={post.image} alt="" /></article>)}</div>
