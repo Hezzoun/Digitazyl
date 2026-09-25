@@ -2,7 +2,6 @@
 
 import "./app.css"
 import { useEffect, useMemo, useState } from "react"
-import { useRouter } from "next/navigation"
 import Link from "next/link"
 import {
   Bell, Bookmark, ChevronRight, Compass, Heart, ImageIcon, LayoutGrid, MapPin, Menu, MessageCircle,
@@ -29,8 +28,8 @@ export default function AppPage() {
   const [mobileNav, setMobileNav] = useState(false)
   const [composer, setComposer] = useState("")
   const [tab, setTab] = useState("Pro tebe")
-  const router = useRouter()
-  const [profileName, setProfileName] = useState("")
+  const [anonymous, setAnonymous] = useState(true)
+  const [profileName, setProfileName] = useState("Anonymně")
   const [sent, setSent] = useState(false)
   const [likedPosts, setLikedPosts] = useState<string[]>([])
   const [savedPosts, setSavedPosts] = useState<string[]>([])
@@ -44,13 +43,13 @@ export default function AppPage() {
     supabase.auth.getUser().then(({ data }) => {
       if (!mounted) return
       const user = data.user
-      if (!user) { router.replace("/prihlaseni"); return }
-      setProfileName(user.user_metadata?.nickname ?? user.email?.split("@")[0] ?? "Člen Digitazyl")
+      setAnonymous(!user)
+      setProfileName(user?.user_metadata?.nickname ?? user?.email?.split("@")[0] ?? "Anonymně")
     })
     const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
       const user = session?.user
-      if (!user) { router.replace("/prihlaseni"); return }
-      setProfileName(user.user_metadata?.nickname ?? user.email?.split("@")[0] ?? "Člen Digitazyl")
+      setAnonymous(!user)
+      setProfileName(user?.user_metadata?.nickname ?? user?.email?.split("@")[0] ?? "Anonymně")
     })
     return () => { mounted = false; listener.subscription.unsubscribe() }
   }, [])
@@ -82,7 +81,7 @@ export default function AppPage() {
         <div className="feed-tabs">{["Pro tebe", "Nejnovější", "Oblíbené", "Z komunity"].map((item) => <button key={item} className={tab === item ? "active" : ""} onClick={() => setTab(item)}>{item}</button>)}</div>
         <div className="post-list">{activePosts.map((post) => <article className="feed-post glass-panel" key={post.title}><div className="post-copy"><div className="post-author"><span className="author-avatar">{post.author[0]}</span><div><strong>{post.author}</strong><small>{post.time} · v <Link href="/temata">{post.topic}</Link></small></div></div><h2>{post.title}</h2><p>{post.text}</p><div className="post-meta"><button aria-pressed={likedPosts.includes(post.title)} onClick={() => setLikedPosts((current) => current.includes(post.title) ? current.filter((title) => title !== post.title) : [...current, post.title])}><Heart className={likedPosts.includes(post.title) ? "liked" : ""} /> {post.likes + (likedPosts.includes(post.title) ? 1 : 0)}</button><button onClick={() => setCommentingPost(commentingPost === post.title ? null : post.title)}><MessageCircle /> {post.comments}</button><button aria-label="Uložit" aria-pressed={savedPosts.includes(post.title)} onClick={() => setSavedPosts((current) => current.includes(post.title) ? current.filter((title) => title !== post.title) : [...current, post.title])}><Bookmark className={savedPosts.includes(post.title) ? "saved" : ""} /></button><button aria-label="Další možnosti"><MoreHorizontal /></button></div>{commentingPost === post.title && <form className="comment-form" onSubmit={(event) => { event.preventDefault(); if (comment.trim()) { setComment(""); setCommentingPost(null) } }}><input value={comment} onChange={(event) => setComment(event.target.value)} placeholder="Napiš komentář..." aria-label="Napiš komentář" /><button type="submit">Odeslat</button></form>}</div><img className="post-image" src={post.image} alt="" /></article>)}</div>
       </section>
-      <aside className="app-rightbar"><section className="space-card glass-panel"><div className="panel-title"><h2>Tvůj prostor</h2><Settings /></div><div className="space-user"><span className="large-avatar">{profileName[0]?.toUpperCase() ?? "A"}</span><div><strong>{profileName}</strong><small>@{profileName.toLowerCase().replace(/\s+/g, "")}</small></div></div><div className="space-stats"><span><strong>24</strong>Příspěvků</span><span><strong>5</strong>Komunit</span><span><strong>12</strong>Uložených</span></div><Link href="/profil" className="profile-button">Můj profil <ChevronRight /></Link>{!anonymous && <button className="sign-out" onClick={signOut}>Odhlásit se</button>}</section><section className="resume-card glass-panel"><h2>Pokračuj tam, kde jsi skončil</h2>{posts.slice(0, 3).map((post) => <Link href="#" className="resume-row" key={post.title}><span className="resume-thumb" style={{ backgroundImage: `url(${post.image})` }} /><span><strong>{post.title}</strong><small>{post.topic} · před 2 dny</small></span></Link>)}<Link className="see-more" href="#">Zobrazit více <ChevronRight /></Link></section><section className="community-card glass-panel"><div className="panel-title"><h2>Doporučené komunity</h2><Link href="/komunita">Zobrazit všechny</Link></div>{["Milovníci hor", "Herní doupě", "Hudební svět"].map((name, i) => <div className="community-row" key={name}><span className={`community-thumb q${i}`} /><span><strong>{name}</strong><small>{["1.2K", "3.4K", "2.1K"][i]} členů</small></span><button>Připojit se</button></div>)}</section></aside>
+      <aside className="app-rightbar"><section className="space-card glass-panel"><div className="panel-title"><h2>Tvůj prostor</h2><Settings /></div><div className="space-user"><span className="large-avatar">{profileName[0]?.toUpperCase() ?? "A"}</span><div><strong>{profileName}</strong><small>{anonymous ? "Tvůj bezpečný prostor" : `@${profileName.toLowerCase().replace(/\s+/g, "")}`}</small></div></div><div className="space-stats"><span><strong>24</strong>Příspěvků</span><span><strong>5</strong>Komunit</span><span><strong>12</strong>Uložených</span></div><Link href="/profil" className="profile-button">Můj profil <ChevronRight /></Link>{!anonymous && <button className="sign-out" onClick={signOut}>Odhlásit se</button>}</section><section className="resume-card glass-panel"><h2>Pokračuj tam, kde jsi skončil</h2>{posts.slice(0, 3).map((post) => <Link href="#" className="resume-row" key={post.title}><span className="resume-thumb" style={{ backgroundImage: `url(${post.image})` }} /><span><strong>{post.title}</strong><small>{post.topic} · před 2 dny</small></span></Link>)}<Link className="see-more" href="#">Zobrazit více <ChevronRight /></Link></section><section className="community-card glass-panel"><div className="panel-title"><h2>Doporučené komunity</h2><Link href="/komunita">Zobrazit všechny</Link></div>{["Milovníci hor", "Herní doupě", "Hudební svět"].map((name, i) => <div className="community-row" key={name}><span className={`community-thumb q${i}`} /><span><strong>{name}</strong><small>{["1.2K", "3.4K", "2.1K"][i]} členů</small></span><button>Připojit se</button></div>)}</section></aside>
     </div>
     <nav className="mobile-bottom-nav"><Link href="/app"><LayoutGrid />Domů</Link><Link href="/temata"><Compass />Objevuj</Link><button onClick={() => document.getElementById("composer")?.scrollIntoView()}><Plus /></button><Link href="/komunita"><Users />Komunity</Link><Link href="/profil"><UserRound />Profil</Link></nav>
   </main>

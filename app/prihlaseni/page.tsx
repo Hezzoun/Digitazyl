@@ -44,6 +44,8 @@ export default function PrihlaseniPage() {
             <button className="gold-button" type="submit" disabled={pending}>{pending ? "Přihlašuji…" : "Přihlásit se"} <Feather /></button>
           </form>
           {message && <p className="auth-message" role="status">{message}</p>}
+          <div className="auth-divider"><span>nebo</span></div>
+          <Link href="/app" className="ghost-button">Pokračovat anonymně</Link>
           <p className="auth-switch">Ještě nemáš účet? <Link href="/registrace">Vytvořit účet</Link></p>
         </div>
       </section>

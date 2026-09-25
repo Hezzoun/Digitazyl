@@ -44,7 +44,7 @@ export function PostCard({ post }: PostCardProps) {
       </div>
       <div className="mt-5 flex items-center gap-2 text-xs text-white/45">
         <span className="size-1.5 rounded-full bg-emerald-300/70" />
-        <span>Člen komunity</span><span aria-hidden="true">·</span><span>{post.timeAgo}</span>
+        <span>Anonymně</span><span aria-hidden="true">·</span><span>{post.timeAgo}</span>
       </div>
       <p className="mt-4 flex-1 text-sm leading-7 text-white/85">{post.text}</p>
       <div className="mt-5 flex flex-wrap gap-2 border-t border-white/10 pt-4">
