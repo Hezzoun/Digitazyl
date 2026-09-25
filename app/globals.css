@@ -4,14 +4,15 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --digitazyl-black: #05090a;
-  --digitazyl-deep: #0b1415;
-  --digitazyl-glass: rgba(15, 20, 20, 0.65);
-  --digitazyl-gold: #c9a76b;
-  --digitazyl-gold-soft: #e4c890;
-  --digitazyl-green: #759887;
-  --digitazyl-white: #f5f0e8;
-  --digitazyl-muted: #8b9290;
+  --digitazyl-black: #050708;
+  --digitazyl-deep: #0b1012;
+  --digitazyl-glass: rgba(12, 16, 17, 0.82);
+  --digitazyl-gold: #d6a84a;
+  --digitazyl-gold-soft: #e7c46a;
+  --digitazyl-green: #a98238;
+  --digitazyl-white: #f3efe5;
+  --digitazyl-muted: #a9a49a;
+  --digitazyl-border: rgba(214, 168, 74, 0.25);
   --background: oklch(0.11 0.015 190);
   --foreground: oklch(0.30 0.05 150);
   --card: oklch(0.955 0.012 85);
