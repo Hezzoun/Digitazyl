@@ -25,17 +25,12 @@ export default function IntroPage() {
     <main className={`intro ${isLeaving ? "intro--leaving" : ""}`}>
       <div className="intro__backdrop" aria-hidden="true"><div className="intro__background" role="img" aria-label="Digitazyl portal artwork" /></div>
       <section className="intro__content" aria-label="Vstup do Digitazyl">
-        <aside className="intro__aside">
-          <p className="intro__eyebrow">MÍSTO, KDE MŮŽEŠ BÝT SÁM SEBOU.</p>
-          <p>Skutečné příběhy.<br />Otevřená komunita.<br />Různá témata.<br />Žádné masky.<br />Žádné posuzování.</p>
-          <span className="intro__rule" />
-          <p>Pro lidi,<br />kteří chtějí víc<br />než jen scrollovat.</p>
-        </aside>
+        
         <div className="intro__hero">
-          <p className="intro__brand">DIGITAZYL</p>
-          <h1>Objev svůj<br /><em>vnitřní klid.</em></h1>
-          <p className="intro__tagline">Tady můžeš být sám sebou.</p>
-          <p className="intro__description">Prostor pro skutečné příběhy, myšlenky, otázky<br />a lidi, kteří rezonují s tím, co máš v sobě.</p>
+          <img className="intro__logo" src="/icon.svg" alt="Digitazyl" />
+          <h1>Objev nový<br /><em>prostor.</em></h1>
+          <p className="intro__tagline">Místo, kde můžeš být sám sebou.</p>
+          <p className="intro__description">Skutečné příběhy, otevřená komunita a prostor<br />pro témata, která dávají smysl.</p>
           <div className="intro__portal-line"><span /></div>
           <button type="button" className="intro__entry" onClick={enterDigitazyl} aria-label="Vstoupit do Digitazyl" disabled={isLeaving}>
             <svg viewBox="0 0 48 32" aria-hidden="true"><path d="M3 16S10.2 4 24 4s21 12 21 12-7.2 12-21 12S3 16 3 16Z" /><circle cx="24" cy="16" r="6.5" /></svg>
