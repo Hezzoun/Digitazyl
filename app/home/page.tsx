@@ -1,29 +1,28 @@
 "use client"
 
-import { useEffect, useState } from "react"
 import Link from "next/link"
-import { ArrowRight, CalendarDays, Feather, Gamepad2, Heart, Image as ImageIcon, Lock, MessageCircle, Music2, PenLine, PlaySquare, Plus, Search, Send, ShieldCheck, Sparkles, TreePine, Users, Video, Wrench } from "lucide-react"
-import { AnonymousInput } from "@/components/anonymous-input"
-import { SiteHeader } from "@/components/digitazyl/site-header"
-import { SafetyBar } from "@/components/digitazyl/safety-bar"
-import { defaultPost, demoPosts, readStorage, storageKeys, writeStorage, type Post } from "@/lib/data/types"
+import "./home.css"
+import { ArrowRight, BookOpen, Camera, Car, ChefHat, CircleHelp, Compass, Cpu, Film, Gamepad2, Headphones, Heart, House, MapPin, Mountain, Music2, Search, Sparkles, Users, Utensils, WandSparkles } from "lucide-react"
 
 const topics = [
-  ["Příběhy", "Život, zkušenosti, radosti i pády.", "🗺️", "topic-stories"], ["Poradna", "Nevíš si rady? Zeptej se.", "✦", "topic-advice"], ["Gaming", "Hry, komunita, zážitky.", "⌁", "topic-gaming"], ["Hudba", "Zvuk, který spojuje.", "♫", "topic-music"], ["Příroda", "Klid v každém detailu.", "♧", "topic-nature"], ["Tvorba", "Vytvářej. Sdílej. Inspiruj.", "✎", "topic-create"], ["Technologie", "Svět se mění. Objevuj s námi.", "▣", "topic-tech"], ["Auta & Moto", "Vůně benzínu, svoboda na cestě.", "⌂", "topic-cars"], ["Filmy & Seriály", "Příběhy, které stojí za to.", "▰", "topic-films"], ["Vědomosti", "Otázky. Odpovědi. Svět kolem nás.", "◎", "topic-knowledge"], ["Sport", "Pohyb, výzvy, lepší já.", "↗", "topic-sport"], ["Jídlo & Vaření", "Chutě, které spojují.", "♨", "topic-food"], ["Cestování", "Objevuj svět.", "⌑", "topic-travel"], ["Domov & Dílna", "Tady vznikají nápady.", "⌂", "topic-home"], ["Knihy & Psaní", "Slova mají sílu.", "▤", "topic-books"], ["Krojeky", "Slova mají sílu.", "⌁", "topic-projects"], ["Projekty", "Tvoř. Sdílej. Rozvíjej.", "⌘", "topic-projects"], ["Objevuj", "Nech se inspirovat.", "◉", "topic-discover"],
-]
-const discussions = ["Jaké hry vás baví nejvíc v roce 2026?", "Vaše oblíbená místa v přírodě?", "Jak zvládat úzkost?", "Co právě vaříte?", "Nejlepší film poslední doby?"]
-const communities = ["Elden Ring CZ/SK", "Houbaři", "PC Sestavy & Setupy", "Cestování po Evropě", "Knižní klub"]
-const events = ["Komunitní herní večer", "Fotovýzva: Podzim v přírodě", "Stream & pokec", "Knižní klub – diskuze", "Digitazyl sraz"]
+  ["Příběhy", "Skutečné příběhy, které tvoříme.", BookOpen, "stories"], ["Poradna", "Otázky, rady, zkušenosti.", CircleHelp, "advice"], ["Gaming", "Hry, novinky, komunita.", Gamepad2, "gaming"], ["Hudba", "Poslouchej, sdílej, objevuj.", Music2, "music"], ["Příroda", "Krajina, zvířata, klid.", Heart, "nature"], ["Tvorba", "Fotografie, video, umění.", Camera, "create"], ["Technologie", "Novinky, AI, vybavení.", Cpu, "tech"], ["Auta & Moto", "Auta, motorky, úpravy.", Car, "cars"], ["Film & Seriály", "Tipy, recenze, diskuze.", Film, "films"], ["Vědomosti", "Fakta, zajímavosti, učení.", BookOpen, "knowledge"], ["Sport", "Pohyb, zdraví, motivace.", Mountain, "sport"], ["Jídlo & Vaření", "Recepty, tipy, inspirace.", Utensils, "food"], ["Cestování", "Místa, zážitky, průvodce.", MapPin, "travel"], ["Domov & Dílna", "Bydlení, projekty, nápady.", House, "home"], ["Knihy & Psaní", "Čtení, psaní, fantazie.", BookOpen, "books"], ["Komunity", "Lidé, skupiny, společné zájmy.", Users, "community"],
+] as const
+
+const navTopics = ["Příběhy", "Poradna", "Gaming", "Hudba", "Příroda", "Tvorba", "Technologie", "Auta & Moto", "Film & Seriály", "Vědomosti", "Sport", "Cestování", "Domov & Dílna", "Jídlo & Vaření", "Knihy & Psaní", "Komunity"]
 
 export default function Home() {
-  const [text, setText] = useState("")
-  const [latest, setLatest] = useState<Post>(defaultPost)
-  const [query, setQuery] = useState("")
-  useEffect(() => { setLatest(readStorage(storageKeys.latest, defaultPost)) }, [])
-  const submit = () => { const value = text.trim(); if (!value) return; const next = { ...defaultPost, text: value, timeAgo: "právě teď" }; setLatest(next); writeStorage(storageKeys.latest, next); setText("") }
-  const onKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => { if (event.key === "Enter" && !event.shiftKey && !event.nativeEvent.isComposing && event.keyCode !== 229) { event.preventDefault(); submit() } }
-  const posts = [latest, ...demoPosts].filter((post) => !query || post.text.toLowerCase().includes(query.toLowerCase()))
-  return <main className="digitazyl-home min-h-screen text-white"><SiteHeader /><div className="home-stage"><aside className="home-quote home-quote-left"><strong>Skuteční lidé.<br />Opravdové příběhy.<br />Různá témata.<br />Jedna komunita.</strong><i />Tady můžeš sdílet,<br />objevovat, ptát se,<br />tvořit a prostě být.</aside><aside className="home-quote home-quote-right">Někdy stačí<br />tiché místo,<br />aby se v tobě<br />zase něco<br />rozsvítilo.<i /></aside><section className="home-hero mx-auto max-w-3xl text-center"><p className="eyebrow">Tiché místo uvnitř hlučného internetu</p><h1>Tady můžeš být <span>sám sebou.</span></h1><p>Napiš, co máš v sobě. Bez jména. Bez soudu.</p></section><section id="composer" className="home-composer mx-auto mt-5 max-w-2xl"><AnonymousInput value={text} onChange={setText} onSubmit={submit} onKeyDown={onKeyDown} /></section></div><section className="home-content"><div className="section-heading"><h2>Objev témata</h2><Link href="/temata">Zobrazit všechna témata <ArrowRight /></Link></div><div className="topic-grid">{topics.map(([name, description, icon, image]) => <Link href={`/temata/${name.toLowerCase().replaceAll(" ", "-")}`} className={`topic-card ${image}`} key={name}><span className="topic-symbol">{icon}</span><div><h3>{name}</h3><p>{description}</p></div></Link>)}</div><div className="home-columns"><LivePanel title="Aktivní diskuze" items={discussions} meta="komentářů" /><LivePanel title="Doporučené komunity" items={communities} action="Připojit se" meta="členů" /><LivePanel title="Nadcházející události" items={events} meta="Online" /></div><section className="stories-preview"><div className="section-heading"><h2>Příběhy lidí jako ty</h2><label><Search /><span className="sr-only">Hledat příběhy</span><input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Hledat příběhy, témata..." /></label></div><div className="story-grid">{posts.slice(0, 3).map((post) => <article className="story-card" key={post.id}><div><span className="story-avatar"><Feather /></span><strong>Anonymně</strong><span className="story-time">{post.timeAgo}</span></div><p>{post.text}</p><footer><span><Heart /> Rozumím</span><span><MessageCircle /> Nejsi v tom sám</span></footer></article>)}</div></section></section><footer className="home-footer"><SafetyBar /></footer><nav className="mobile-nav"><Link href="/home">Domů</Link><Link href="/pribehy">Příběhy</Link><Link href="/home#composer" className="mobile-plus"><Plus /></Link><Link href="/komunita">Komunity</Link><Link href="/lide">Profil</Link></nav></main>
+  return <main className="home-reference">
+    <header className="home-reference__header">
+      <Link href="/home" className="home-reference__brand"><img src="/icon.svg" alt="Digitazyl" /><span>DIGITAZYL</span></Link>
+      <div className="home-reference__actions"><Link href="/prihlaseni" className="home-reference__login">Přihlásit se</Link><Link href="/registrace" className="home-reference__register">Registrace</Link></div>
+    </header>
+    <section className="home-reference__hero">
+      <div className="home-reference__hero-copy"><p className="home-reference__eyebrow">DOMOV</p><h1>Objev prostor,<br /><em>který tě zajímá.</em></h1><p>Vyber si téma, prozkoumej příběhy, zapoj se do diskuze<br className="desktop-only" /> a najdi komunitu, která rezonuje s tím, co máš v sobě.</p></div>
+      <label className="home-reference__search"><Search aria-hidden="true" /><span className="sr-only">Hledat téma</span><input placeholder="Hledat téma..." /></label>
+    </section>
+    <section className="home-reference__content">
+      <div className="home-reference__topic-nav"><button className="is-active"><Sparkles /> Všechna témata</button>{navTopics.map((topic, index) => <Link href={`/temata/${topic.toLowerCase().replaceAll(" ", "-")}`} key={topic}>{index % 4 === 0 ? <BookOpen /> : index % 4 === 1 ? <CircleHelp /> : index % 4 === 2 ? <Gamepad2 /> : <Music2 />}<span>{topic}</span></Link>)}</div>
+      <div className="home-reference__grid">{topics.map(([name, description, Icon, slug]) => <Link href={`/temata/${slug}`} className={`reference-topic-card card-${slug}`} key={name}><div className="reference-topic-card__copy"><Icon /><h2>{name}</h2><p>{description}</p></div><ArrowRight /></Link>)}<aside className="reference-topic-card reference-topic-card--suggest"><WandSparkles /><div><h2>Nenašel jsi své téma?</h2><p>Navrhni nové téma a pomoz rozšířit<br />Digitazyl o další inspirativní oblasti.</p><Link href="/temata">Navrhnout téma <ArrowRight /></Link></div></aside></div>
+    </section>
+  </main>
 }
-
-function LivePanel({ title, items, action, meta }: { title: string; items: string[]; action?: string; meta: string }) { return <section className="live-panel"><div className="live-title"><h2>{title}</h2><Link href={title === "Aktivní diskuze" ? "/pribehy" : title === "Doporučené komunity" ? "/komunita" : "/udalosti"}>Zobrazit vše <ArrowRight /></Link></div>{items.map((item, index) => <Link href="#" className="live-row" key={item}><span className={`live-icon live-${index}`}><Sparkles /></span><span><strong>{item}</strong><small>{meta === "Online" ? `${index + 5}. 10. 2026 · ${meta}` : `${index + 1}  ${meta} · před ${index + 2} h`}</small></span>{action && <button type="button" onClick={(event) => event.preventDefault()}>{action}</button>}</Link>)}</section>}
