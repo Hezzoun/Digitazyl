@@ -22,7 +22,7 @@ export default function IntroPage() {
   ]
 
   return (
-    <main className={`intro ${isLeaving ? "intro--leaving" : ""}`}>
+    <main data-page="intro" className={`intro ${isLeaving ? "intro--leaving" : ""}`}>
       <div className="intro__backdrop" aria-hidden="true"><div className="intro__background" role="img" aria-label="Digitazyl portal artwork" /></div>
       <section className="intro__content" aria-label="Vstup do Digitazyl">
         <aside className="intro__aside">
