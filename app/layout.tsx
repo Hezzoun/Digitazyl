@@ -3,7 +3,6 @@ import { Inter, Playfair_Display } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 import './app/app.css'
-import { GlobalBackground } from '@/components/digitazyl/global-background'
 
 const inter = Inter({ 
   subsets: ["latin"],
@@ -46,7 +45,7 @@ export default function RootLayout({
   return (
     <html lang="cs" className={`${inter.variable} ${playfair.variable} bg-background`}>
       <body className="font-sans antialiased">
-        <GlobalBackground>{children}</GlobalBackground>
+        {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>
