@@ -47,7 +47,7 @@ export default function Home() {
       <div className="home-reference__actions"><Link href="/prihlaseni" className="home-reference__login">Přihlásit se</Link><Link href="/registrace" className="home-reference__register">Registrace</Link></div>
     </header>
     <section className="home-reference__hero">
-      <div className="home-reference__hero-copy"><p className="home-reference__eyebrow">DOMOV</p><h1>Objev prostor,<br /><em>který tě zajímá.</em></h1><p>Vyber si téma, prozkoumej příběhy, zapoj se do diskuze<br className="desktop-only" /> a najdi komunitu, která rezonuje s tím, co máš v sobě.</p></div>
+      <div className="home-reference__hero-copy"><p className="home-reference__eyebrow">DIGITAZYL</p><h1>Tady můžeš být<br /><em>sám sebou.</em></h1><p>Napiš, co máš v sobě. Bez jména. Bez soudů.<br className="desktop-only" /> Skutečné příběhy, skuteční lidé, skutečný prostor.</p></div>
     </section>
     <section className="home-reference__content">
       <div className="home-reference__topic-nav"><button className="is-active"><Sparkles /> Všechna témata</button>{navTopics.map((topic, index) => <Link href={`/temata/${topic.toLowerCase().replaceAll(" ", "-")}`} onClick={handlePreviewClick} key={topic}>{index % 4 === 0 ? <BookOpen /> : index % 4 === 1 ? <CircleHelp /> : index % 4 === 2 ? <Gamepad2 /> : <Music2 />}<span>{topic}</span></Link>)}</div>
