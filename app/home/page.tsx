@@ -8,7 +8,7 @@ import { createClient } from "@/lib/supabase/client"
 import { ArrowRight, BookOpen, Camera, Car, ChefHat, CircleHelp, Compass, Cpu, Film, Gamepad2, Headphones, Heart, House, MapPin, Mountain, Music2, Sparkles, Users, Utensils, WandSparkles } from "lucide-react"
 
 const topics = [
-  ["Příběhy", "Skutečné příběhy, které tvoříme.", BookOpen, "stories"], ["Poradna", "Otázky, rady, zkušenosti.", CircleHelp, "advice"], ["Gaming", "Hry, novinky, komunita.", Gamepad2, "gaming"], ["Hudba", "Poslouchej, sdílej, objevuj.", Music2, "music"], ["Příroda", "Krajina, zvířata, klid.", Heart, "nature"], ["Tvorba", "Fotografie, video, umění.", Camera, "create"], ["Technologie", "Novinky, AI, vybavení.", Cpu, "tech"], ["Auta & Moto", "Auta, motorky, úpravy.", Car, "cars"], ["Film & Seriály", "Tipy, recenze, diskuze.", Film, "films"], ["Vědomosti", "Fakta, zajímavosti, učení.", BookOpen, "knowledge"], ["Sport", "Pohyb, zdraví, motivace.", Mountain, "sport"], ["Jídlo & Vaření", "Recepty, tipy, inspirace.", Utensils, "food"], ["Cestování", "Místa, zážitky, průvodce.", MapPin, "travel"], ["Domov & Dílna", "Bydlení, projekty, nápady.", House, "home"], ["Knihy & Psaní", "Čtení, psaní, fantazie.", BookOpen, "books"], ["Komunity", "Lidé, skupiny, společné zájmy.", Users, "community"],
+  ["Příběhy", "Skutečné příběhy, které tě inspirují.", BookOpen, "stories"], ["Komunita", "Lidé, kteří rozumí. Diskuze, podpora, přátelství.", Users, "community"], ["Témata", "Od života po technologie. Najdi to, co tě zajímá.", Compass, "topics"], ["Objevuj", "Nové pohledy, nápady a inspirace každý den.", Sparkles, "explore"],
 ] as const
 
 const navTopics = ["Příběhy", "Poradna", "Gaming", "Hudba", "Příroda", "Tvorba", "Technologie", "Auta & Moto", "Film & Seriály", "Vědomosti", "Sport", "Cestování", "Domov & Dílna", "Jídlo & Vaření", "Knihy & Psaní", "Komunity"]
@@ -47,7 +47,7 @@ export default function Home() {
       <div className="home-reference__actions"><Link href="/prihlaseni" className="home-reference__login">Přihlásit se</Link><Link href="/registrace" className="home-reference__register">Registrace</Link></div>
     </header>
     <section className="home-reference__hero">
-      <div className="home-reference__hero-copy"><p className="home-reference__eyebrow">DOMOV</p><h1>Objev prostor,<br /><em>který tě zajímá.</em></h1><p>Vyber si téma, prozkoumej příběhy, zapoj se do diskuze<br className="desktop-only" /> a najdi komunitu, která rezonuje s tím, co máš v sobě.</p></div>
+      <div className="home-reference__hero-copy"><p className="home-reference__eyebrow">DIGITAZYL</p><h1>Tady můžeš být<br /><em>sám sebou.</em></h1><p>Napiš, co máš v sobě. Bez jména. Bez soudů.<br className="desktop-only" /> Skutečné příběhy, skuteční lidé, skutečný prostor.</p></div>
     </section>
     <section className="home-reference__content">
       <div className="home-reference__topic-nav"><button className="is-active"><Sparkles /> Všechna témata</button>{navTopics.map((topic, index) => <Link href={`/temata/${topic.toLowerCase().replaceAll(" ", "-")}`} onClick={handlePreviewClick} key={topic}>{index % 4 === 0 ? <BookOpen /> : index % 4 === 1 ? <CircleHelp /> : index % 4 === 2 ? <Gamepad2 /> : <Music2 />}<span>{topic}</span></Link>)}</div>
