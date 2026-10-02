@@ -56,10 +56,10 @@ export default function AppPage() {
   return <main className="app-shell">
     <header className="app-header">
       <button className="app-menu" aria-label="Otevřít menu" onClick={() => setMobileNav(!mobileNav)}>{mobileNav ? <X /> : <Menu />}</button>
-      <Link href="/app" className="app-logo"><img className="app-logo-mark" src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/logo-9TE7My27g32NGDlGFAyK5g02sJMBuB.png" alt="Digitazyl" /><span><strong>DIGITAZYL</strong><small>Objev svůj vnitřní klid</small></span></Link>
-      <label className="app-search"><Search /><input placeholder="Hledej příspěvky, témata, komunity..." aria-label="Hledej příspěvky, témata, komunity" /></label>
+      <Link href="/app" className="app-logo"><img className="app-logo-mark" src="/icon.svg" alt="Digitazyl" /><span><strong>DIGITAZYL</strong><small>Objev svůj vnitřní klid</small></span></Link>
+<label className="app-search"><Search /><input placeholder="Hledat..." aria-label="Hledat" /></label>
       <nav className="app-nav" aria-label="Hlavní navigace">
-        {[["Domů", LayoutGrid, "/app"], ["Témata", Compass, "/temata"], ["Komunity", Users, "/komunita"], ["Příběhy", MessageCircle, "/pribehy"], ["Lidé", UserRound, "/lide"]].map(([label, Icon, href]) => <Link key={label as string} href={href as string} className={label === "Domů" ? "active" : ""}><Icon /><span>{label as string}</span></Link>)}
+        {[['Domů', LayoutGrid, '/app'], ['Příběhy', MessageCircle, '/pribehy'], ['Lidé', UserRound, '/lide'], ['Témata', Compass, '/temata'], ['Komunity', Users, '/komunita'], ['O nás', Shield, '/home'], ['Store', Plus, '/home']].map(([label, Icon, href]) => <Link key={label as string} href={href as string} className={label === 'Domů' ? 'active' : ''}><Icon /><span>{label as string}</span></Link>)}
       </nav>
       <div className="app-actions"><button aria-label="Notifikace"><Bell /></button><button className="create-top" aria-label="Vytvořit příspěvek"><Plus /></button><Link href="/profil" className="profile-avatar" aria-label="Profil">{profileName[0]?.toUpperCase() ?? "A"}</Link></div>
     </header>
